@@ -1,7 +1,7 @@
 
 
 export interface User {
-    userId: number;
+    UserId: number;
     SpotifyGUID: number;
     CreatedDate: Date;
     UserName: string;
