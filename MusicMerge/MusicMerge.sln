@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
+
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicMerge", "MusicMerge\MusicMerge.csproj", "{6DC45D4D-F0AB-44C7-902E-7FE1A037DC17}"
+
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicMerge", "MusicMerge\MusicMerge.csproj", "{24F93CB2-7A0B-49D5-9C23-E7946020E83E}"
+
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +15,26 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+
 		{6DC45D4D-F0AB-44C7-902E-7FE1A037DC17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6DC45D4D-F0AB-44C7-902E-7FE1A037DC17}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6DC45D4D-F0AB-44C7-902E-7FE1A037DC17}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6DC45D4D-F0AB-44C7-902E-7FE1A037DC17}.Release|Any CPU.Build.0 = Release|Any CPU
+
+		{24F93CB2-7A0B-49D5-9C23-E7946020E83E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24F93CB2-7A0B-49D5-9C23-E7946020E83E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24F93CB2-7A0B-49D5-9C23-E7946020E83E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24F93CB2-7A0B-49D5-9C23-E7946020E83E}.Release|Any CPU.Build.0 = Release|Any CPU
+
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
+
 		SolutionGuid = {C4C55D52-82B4-4D95-8DE0-0AC714466235}
+
+		SolutionGuid = {F55286FE-151E-4EAE-B743-230D2BF64361}
+
 	EndGlobalSection
 EndGlobal
