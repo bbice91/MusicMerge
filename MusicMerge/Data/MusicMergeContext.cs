@@ -14,10 +14,10 @@ namespace MusicMerge.Data
         {
         }
 
-        public DbSet<MusicMerge.User>? User { get; set; }
-
         public DbSet<MusicMerge.Album>? Album { get; set; }
 
         public DbSet<MusicMerge.GeneratedImage>? GeneratedImage { get; set; }
+
+        public DbSet<MusicMerge.User>? User { get; set; }
     }
 }
