@@ -1,1 +1,18 @@
 <p>album-upload works!</p>
+
+<form formGroup="albumsFormGroup" (submit)="submitAlbums()">
+    
+    <div>
+		<label>First Album:</label>
+		<input type="text" formControlName="firstAlbumInput">
+	</div>
+    <div>
+		<label>Second Album</label>
+		<input type="text" formControlName="secondAlbumInput">
+	</div>
+
+
+    <div>
+        <button type="submit" (click)="reloadCurrentPage()">Submit Request</button>
+    </div>
+</form>
