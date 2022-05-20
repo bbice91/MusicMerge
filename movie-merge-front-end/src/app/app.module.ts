@@ -7,10 +7,14 @@ import { AlbumUploadComponent } from './album-upload/album-upload.component';
 import { ContactComponent } from './contact/contact.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { HttpClientModule} from '@angular/common/http'; 
+
+import { AppRoutingModule } from './app-routing.module';
+
 import { AppRoutingModule } from './app-routing-module';
 import { ListViewComponent } from './list-view/list-view.component';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { GeneratedArtPieceComponent } from './generated-art-piece/generated-art-piece.component';
+
  
 
 

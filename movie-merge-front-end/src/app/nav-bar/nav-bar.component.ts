@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+
 
 @Component({
   selector: 'app-nav-bar',
@@ -8,6 +9,22 @@ import { Component, OnInit } from '@angular/core';
 export class NavBarComponent implements OnInit {
 
   constructor() { }
+  public routes = [
+    {
+      route: "home",
+      text: "Home"
+    },
+    {
+      route: "album-upload",
+      text: "Upload Albums"
+    },
+    {
+      route: "contact",
+      text: "Account Info"
+    },
+
+
+  ]
 
   ngOnInit(): void {
   }
