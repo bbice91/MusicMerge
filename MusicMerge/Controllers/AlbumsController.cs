@@ -54,7 +54,7 @@ namespace MusicMerge
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAlbum(int id, Album album)
         {
-            if (id != album.AlbumId)
+            if (id != album.Id)
             {
                 return BadRequest();
             }
@@ -92,7 +92,7 @@ namespace MusicMerge
             _context.Album.Add(album);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetAlbum", new { id = album.AlbumId }, album);
+            return CreatedAtAction("GetAlbum", new { id = album.Id }, album);
         }
 
         // DELETE: api/Albums/5
@@ -117,7 +117,7 @@ namespace MusicMerge
 
         private bool AlbumExists(int id)
         {
-            return (_context.Album?.Any(e => e.AlbumId == id)).GetValueOrDefault();
+            return (_context.Album?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

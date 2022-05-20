@@ -54,7 +54,7 @@ namespace MusicMerge
         [HttpPut("{id}")]
         public async Task<IActionResult> PutGeneratedImage(int id, GeneratedImage generatedImage)
         {
-            if (id != generatedImage.GeneratedImageId)
+            if (id != generatedImage.Id)
             {
                 return BadRequest();
             }
@@ -92,7 +92,7 @@ namespace MusicMerge
             _context.GeneratedImage.Add(generatedImage);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetGeneratedImage", new { id = generatedImage.GeneratedImageId }, generatedImage);
+            return CreatedAtAction("GetGeneratedImage", new { id = generatedImage.Id }, generatedImage);
         }
 
         // DELETE: api/GeneratedImages/5
@@ -117,7 +117,7 @@ namespace MusicMerge
 
         private bool GeneratedImageExists(int id)
         {
-            return (_context.GeneratedImage?.Any(e => e.GeneratedImageId == id)).GetValueOrDefault();
+            return (_context.GeneratedImage?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
