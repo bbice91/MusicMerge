@@ -15,13 +15,22 @@ export class NavBarComponent implements OnInit {
       text: "Home"
     },
     {
+      route: "login",
+      text: "Log In"
+    },
+    {
+      route: "create-user",
+      text: "Create An Account"
+    },
+    {
+      route: "generated-art-piece",
+      text: "Generate Album Art"
+    },
+    {
       route: "album-upload",
       text: "Upload Albums"
     },
-    {
-      route: "contact",
-      text: "Account Info"
-    },
+
 
 
   ]

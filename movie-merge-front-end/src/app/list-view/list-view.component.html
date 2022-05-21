@@ -1,1 +1,29 @@
 <p>list-view works!</p>
+
+<ul *ngIf="albums.length > 0; else waitingForAlbums">
+
+    <li *ngFor="let album of albums">
+        <!-- <div>
+            Name: <a [routerLink]="['/albums', albums.albumId]">{{albums.description}}</a>
+        <br>
+            Email: {{ticket.submitterEmail}}
+        <br>
+            Subject Line: {{ticket.subjectLine}}
+        <br>
+            Problem: {{ticket.problem}}
+        <br>
+            Time Submitted: {{ticket.submittedTime}}
+        <br>    
+
+            <button (click)="deleteTicket(ticket.ticketID)">Delete</button>
+             
+            <br>Click here to favorite/assign this ticket
+        
+        </div> -->
+    </li>
+    
+    </ul>
+    
+    <ng-template #waitingForAlbums>
+        <p>collecting your Albums...</p>
+    </ng-template>
