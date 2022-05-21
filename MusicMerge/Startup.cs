@@ -32,6 +32,16 @@ namespace MusicMerge
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MusicMerge", Version = "v1" });
             });
+
+            services.AddCors(corsOptions =>
+            {
+                corsOptions.AddDefaultPolicy(corsPolicyBuilder =>
+                {
+                    corsPolicyBuilder.AllowAnyHeader();
+                    corsPolicyBuilder.AllowAnyMethod();
+                    corsPolicyBuilder.AllowAnyOrigin();
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +53,8 @@ namespace MusicMerge
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "MusicMerge v1"));
             }
+
+            app.UseCors();
 
             app.UseHttpsRedirection();
 
