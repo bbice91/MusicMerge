@@ -9,7 +9,7 @@ import { Albums, PostAlbums } from './models/Albums';
 export class AlbumsService {
 
   constructor(private httpClient: HttpClient) { }
-  baseUrl = "https://localhost:7265/swagger/index.html";
+  baseUrl = "https://localhost:7265/albums";
   
   // postAlbums(postAlbums: PostAlbums) {
   //   throw new Error('Method not implemented.');
