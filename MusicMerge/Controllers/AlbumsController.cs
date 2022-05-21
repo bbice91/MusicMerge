@@ -22,7 +22,7 @@ namespace MusicMerge
 
         // GET: api/Albums
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Album>>> GetAlbum()
+        public async Task<ActionResult<IEnumerable<Album>>> GetAlbums()
         {
           if (_context.Albums == null)
           {
@@ -87,9 +87,9 @@ namespace MusicMerge
         {
           if (_context.Albums == null)
           {
-              return Problem("Entity set 'MusicMergeContext.Album'  is null.");
+              return Problem("Entity set 'MusicMergeContext.Albums'  is null.");
           }
-            _context.Albums.Add(albums);
+            _context.Albums.Add(album);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetAlbum", new { id = album.Id }, album);
