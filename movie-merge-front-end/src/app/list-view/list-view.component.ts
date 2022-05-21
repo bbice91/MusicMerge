@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AlbumsService } from '../albums.service';
+import { Albums } from '../models/Albums';
 
 @Component({
   selector: 'app-list-view',
@@ -6,10 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list-view.component.css']
 })
 export class ListViewComponent implements OnInit {
+  albums$ = this._albumsService.getAlbums();
 
-  constructor() { }
+  albums: Albums[] = [];
+
+
+  constructor(private _albumsService: AlbumsService) { }
 
   ngOnInit(): void {
-  }
+    this._albumsService.getAlbums().subscribe(albums => {
+      this.albums = albums;
+  })
+}
 
 }
+
+

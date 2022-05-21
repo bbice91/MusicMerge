@@ -7,15 +7,17 @@ import { Albums, PostAlbums } from './models/Albums';
 })
 
 export class AlbumsService {
-  
-  postAlbums(postAlbums: PostAlbums) {
-    throw new Error('Method not implemented.');
-  }
 
   constructor(private httpClient: HttpClient) { }
   baseUrl = "https://localhost:7265/swagger/index.html";
-
-  uploadAlbum(albums: PostAlbums) {
+  
+  // postAlbums(postAlbums: PostAlbums) {
+  //   throw new Error('Method not implemented.');
+  // }
+  getAlbums() {
+    return this.httpClient.get<Array<Albums>>(this.baseUrl);
+  }
+  postAlbum(albums: PostAlbums) {
     return this.httpClient.post<Albums>(this.baseUrl, albums);
   }
 }

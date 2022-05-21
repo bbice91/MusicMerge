@@ -15,14 +15,14 @@ export class AlbumUploadComponent implements OnInit {
   
 
   albumsFormGroup = new FormGroup({
-    albumOneInput: new FormControl(''),
-    albumTwoInput: new FormControl(''),
+    firstAlbumInput: new FormControl(''),
+    secondAlbumInput: new FormControl(''),
 
   })
 
-  submitAlbums() {
+  uploadAlbums() {
     const postAlbums: PostAlbums = this.albumsFormGroup.value;
-    // this._albumsService.postAlbums(postAlbums).subscribe();
+    this._albumsService.postAlbum(postAlbums).subscribe();
   }
 
   reloadCurrentPage() {
