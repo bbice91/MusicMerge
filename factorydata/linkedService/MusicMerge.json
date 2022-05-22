@@ -1,17 +1,11 @@
 {
 	"name": "MusicMerge",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"annotations": [],
 		"type": "AzureSqlDatabase",
 		"typeProperties": {
-			"connectionString": {
-				"type": "AzureKeyVaultSecret",
-				"store": {
-					"referenceName": "MusicMergeVault",
-					"type": "LinkedServiceReference"
-				},
-				"secretName": "mmAdmin"
-			}
+			"connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=musicmerge.database.windows.net;Initial Catalog=MusicMerge"
 		}
 	}
 }
