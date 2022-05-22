@@ -1,0 +1,17 @@
+{
+	"name": "MusicMerge",
+	"properties": {
+		"annotations": [],
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"connectionString": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "MusicMergeVault",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "mmAdmin"
+			}
+		}
+	}
+}
