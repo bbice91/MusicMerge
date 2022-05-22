@@ -1,0 +1,10 @@
+{
+	"name": "MusicMergeVault",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://ArtNMusic.vault.azure.net/"
+		}
+	}
+}
