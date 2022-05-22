@@ -3,8 +3,13 @@ using MetaBrainz.MusicBrainz;
 
 namespace MusicMerge
 {
-    public class AlbumQuery
+    public class Artist
     {
-        public string Artist { get; set; }
+        public int Id { get; set; }
+        public int Gid { get; set; }
+        public string Name { get; set; }
+
+        public string Sort_Name { get; set; }
+
     }
 }
