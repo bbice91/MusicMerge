@@ -21,6 +21,7 @@ namespace MusicMerge
             _context = context;
         }
 
+
         /*[HttpGet("{artist}")]
         public async Task<ActionResult<Album>> GetAlbumsByArtist(string artist)
         {
@@ -28,6 +29,7 @@ namespace MusicMerge
             q.FindArtists("artist", simple: true);
             return (q);
         }*/
+
 
         private bool AlbumExists(int id)
         {
