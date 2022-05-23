@@ -1,6 +1,6 @@
 <p>album-upload works!</p>
 
-<form [formgroup] ="albumsFormGroup" (submit)="uploadAlbums()">
+<form formgroup ="albumsFormGroup" (submit)="uploadAlbums()">
     <div>
 		<label>First Album:</label>
 		<input type="text" formControlName="firstAlbumInput">
@@ -12,6 +12,6 @@
 
 
     <div>
-        <button type="submit" (click)="reloadCurrentPage()">Submit Request</button>
+        <button type="submit" (click)="uploadAlbums()">Submit Request</button>
     </div>
 </form>
