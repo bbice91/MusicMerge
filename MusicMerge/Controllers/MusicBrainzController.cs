@@ -21,13 +21,15 @@ namespace MusicMerge
             _context = context;
         }
 
-        //[HttpGet("{artist}")]
-        //public async Task<ActionResult<Album>> GetAlbumsByArtist(string artist)
-        //{
-        //    var q = new Query();
-        //    q.FindArtists("artist", simple: true);
-        //    return (q);
-        //}
+
+        /*[HttpGet("{artist}")]
+        public async Task<ActionResult<Album>> GetAlbumsByArtist(string artist)
+        {
+            var q = new Query();
+            q.FindArtists("artist", simple: true);
+            return (q);
+        }*/
+
 
         private bool AlbumExists(int id)
         {
