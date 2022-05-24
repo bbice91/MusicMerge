@@ -27,6 +27,7 @@ namespace MusicMerge
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.Configure<DBConfig>(Configuration.GetSection("ConnectionString"));
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
