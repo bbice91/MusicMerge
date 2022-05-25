@@ -3,3 +3,22 @@
     flex-direction: row;
     justify-content: space-between;
 }
+#button {
+    padding: 15px 25px;
+    font-size: 15px;
+    text-align: center;
+    outline: none;
+    color: rgb(4, 10, 5);
+    background-color: #08291b;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+  }
+  
+  .button:hover {background-color: #90dbbc}
+  
+  .button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px rgb(20, 48, 34);
+    
+  }

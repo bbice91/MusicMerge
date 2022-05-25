@@ -1,0 +1,19 @@
+.homeHeader{
+    display: flex;
+	flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    background-color: rgb(6, 53, 18);
+    color: rgb(139, 224, 139)
+
+
+}
+.homeDesctription{
+
+    display: flex;
+	flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    background-color: rgb(6, 53, 18);
+    color: rgb(139, 224, 139)
+}
