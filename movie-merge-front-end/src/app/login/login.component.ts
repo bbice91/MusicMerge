@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { map } from 'rxjs';
+import { filter } from 'rxjs';
+import { switchMap } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { AuthLoginService } from '../auth-login.service';
 
 @Component({
@@ -7,13 +12,33 @@ import { AuthLoginService } from '../auth-login.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  private _authService: AuthLoginService | undefined;
 
-  constructor() {}
+  constructor(
+    private _activatedRoute: ActivatedRoute,
+    private _authLoginService: AuthLoginService, 
+    private _router: Router
+  ) {}
 
+  onSpotifyLogin(){
+    this._authLoginService.redirectSpotifyToken();
+  }
  
 
-  ngOnInit(): void { }
+  ngOnInit(): void { 
+
+    this._activatedRoute.queryParams.pipe(
+      map(params => ({code: params["code"], state: params["state"]})),
+      filter(p => p.code && p.state && p.state === localStorage.getItem("authState")),
+      switchMap((p: {code: string}) => this._authLoginService.spotifylogin(p.code))
+    ) 
+    .subscribe(userName => {
+      localStorage.setItem("userName", JSON.stringify(userName));
+      this._authLoginService.setUserName(userName);
+      this._router.navigate(["/"]);
+    });
+  }
+
+  
 
 }
 
