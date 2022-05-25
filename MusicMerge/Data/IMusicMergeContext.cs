@@ -7,7 +7,7 @@ using MusicMerge;
 
 namespace MusicMerge.Data
 {
-    public interface IMusicMergeContext : IGetUser, IAddUser, IUpdateUser, IUpdateAlbum, IGetAlbum, IGetAlbums, IAddAlbum, IAddGeneratedImage, IGetGeneratedImages, IUpdateGeneratedImage, IGetGeneratedImage
+    public interface IMusicMergeContext : IGetUser, IAddUser, IUpdateUser, IUpdateAlbum, IGetAlbum, IGetAlbums, IAddAlbumOne, IAddAlbumTwo, IAddGeneratedImage, IGetGeneratedImages, IUpdateGeneratedImage, IGetGeneratedImage
     {
     }
 
@@ -38,9 +38,19 @@ namespace MusicMerge.Data
     {
         Album GetAlbums(int id);
     }
-    public interface IAddAlbum
+    public interface IAddAlbumOne
     {
-        Album AddAlbum(int id);
+        Album AddAlbumOne(int id);
+    }
+
+    public interface IAddAlbumTwo
+    {
+        Album AddAlbumTwo(int id);
+    }
+
+    public interface IDeleteAlbum
+    {
+        Album DeleteAlbum(int Id);
     }
 
     public interface IUpdateGeneratedImage
@@ -60,6 +70,11 @@ namespace MusicMerge.Data
     public interface IAddGeneratedImage
     {
         GeneratedImage AddGeneratedImage(int id);
+    }
+
+    public interface IDeleteGeneratedImage
+    {
+        GeneratedImage DeleteGeneratedImage(int Id);
     }
 
 }
