@@ -7,13 +7,13 @@ using MusicMerge;
 
 namespace MusicMerge.Data
 {
-    public class MusicMergeContext : DbContext/*, IMusicMergeContext*/
+    public class MusicMergeContext : DbContext, IMusicMergeContext
     {
         public MusicMergeContext (DbContextOptions<MusicMergeContext> options)
             : base(options)
         {
         }
-        //private readonly string _connectionString;
+        private readonly string _connectionString;
 
         public DbSet<MusicMerge.Album> Albums { get; set; }
 
@@ -21,9 +21,9 @@ namespace MusicMerge.Data
 
         public DbSet<MusicMerge.User> Users { get; set; }
 
-        //public MusicMergeContext(IOptions<DBConfig> dbConfig)
-        //{
-        //    _connectionString = dbConfig.Value.Angular;
-        //}
+        public MusicMergeContext(IOptions<DBConfig> dbConfig)
+        {
+            _connectionString = dbConfig.Value.Angular;
+        }
     }
 }

@@ -8,7 +8,6 @@ namespace MusicMerge
         public int Id { get; set; }
         public int Gid { get; set; }
         public string Name { get; set; }
-
         public string Sort_Name { get; set; }
 
     }
