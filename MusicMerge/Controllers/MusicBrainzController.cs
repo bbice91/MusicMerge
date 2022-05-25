@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MusicMerge.Data;
 using MetaBrainz.MusicBrainz;
+using MetaBrainz.MusicBrainz.Interfaces.Searches;
 
 namespace MusicMerge
 {
@@ -22,12 +23,14 @@ namespace MusicMerge
         }
 
 
-        /*[HttpGet("{artist}")]
-        public async Task<ActionResult<Album>> GetAlbumsByArtist(string artist)
+       /* [HttpGet("{artist}")]
+        public ISearchResults<Artist> GetAlbumsByArtist(string artist)
         {
             var q = new Query();
-            q.FindArtists("artist", simple: true);
-            return (q);
+
+            q.FindArtists(artist);
+            q.FindAllReleases(artist);
+            return q;
         }*/
 
 
