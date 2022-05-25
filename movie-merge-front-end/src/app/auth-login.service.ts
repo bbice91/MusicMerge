@@ -25,7 +25,6 @@ export class AuthLoginService {
     const queryParameters = [
       'client_id=6d95cb05880c44d4aba9865140cc7bfa',
       'state=${authState}',
-      'client_secret=e49fcbb75d1849f6bf638b908c1ade75',
       encodeURIComponent('redirect_uri=https://localhost:7265/authLogin'),
     ];
 
