@@ -198,8 +198,63 @@ namespace MusicMerge.Data
             throw new NotImplementedException();
         }
 
+<<<<<<< Updated upstream
         Album IGetAlbums.GetAlbums(int id)
         {
+=======
+        /*public MusicMergeContext(IOptions<DBConfig> dbConfig)
+        {
+            _connectionString = dbConfig.Value.Angular;
+        }*/
+
+        public User GetUser(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public User AddUser(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public User UpdateUser(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Album UpdateAlbum(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Album GetAlbum(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Album GetAlbums(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Album AddAlbum(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public GeneratedImage AddGeneratedImage(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public GeneratedImage GetGeneratedImage(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public GeneratedImage UpdateGeneratedImage(int id)
+        {
+>>>>>>> Stashed changes
             throw new NotImplementedException();
         }
     }
