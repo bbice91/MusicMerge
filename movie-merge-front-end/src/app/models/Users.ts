@@ -1,8 +1,8 @@
 export interface Users{
     userId: number,
     userName: string,
-    userPassword: string,
-
+    authority: string,
+    
     SpotifyGuid: string,
 
 

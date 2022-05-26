@@ -14,6 +14,7 @@ import { UsersService } from '../users.service';
   styleUrls: ['./create-user.component.css']
 })
 export class CreateUserComponent implements OnInit {
+  userName: any;
 
   //constructor(private _createUser: UsersService) { }
   constructor(router: Router, _usersService: UsersService, httpClient: HttpClient) { }
@@ -23,10 +24,10 @@ export class CreateUserComponent implements OnInit {
     password: new FormControl(''),
 
   })
-//  CreateUserName(userName: UserName, password: Users) {
-//     const createUserName: CreateUserName = this.createUserFormGroup.value;
-//     this._createUser.createUserName(createUserName).subscribe();
-//   }
+//   CreateUserName(userName: Users, password: Users) {
+//      const createUserName: CreateUserName = this.createUserFormGroup.value;
+//     this.userName.createUserName(createUserName).subscribe();
+//  }
 
 
 
