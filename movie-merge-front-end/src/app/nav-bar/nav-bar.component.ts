@@ -19,8 +19,8 @@ export class NavBarComponent implements OnInit {
       text: "Log In"
     },
     {
-      route: "create-user",
-      text: "Create An Account"
+      route: "list-view",
+      text: "Albums"
     },
     {
       route: "generated-art-piece",

@@ -1,0 +1,18 @@
+
+
+.list{
+
+    display: flex;
+	flex-direction: column;
+    justify-content: center;
+    text-align: center;
+
+}
+.waiting{
+
+    display: flex;
+	flex-direction: column;
+    justify-content: center;
+    text-align: center;
+
+}

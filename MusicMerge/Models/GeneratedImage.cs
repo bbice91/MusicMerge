@@ -9,4 +9,5 @@ namespace MusicMerge
         public string GeneratedImagePath { get; set; }
 
     }
+
 }

@@ -12,6 +12,7 @@ namespace MusicMerge.Data
         public MusicBrainzContext (DbContextOptions<MusicMergeContext> options)
             : base(options)
         {
+
         }
     }
 }

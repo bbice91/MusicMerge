@@ -34,9 +34,9 @@ namespace MusicMerge
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MusicMerge", Version = "v1" });
             });
 
-            services.AddCors(corsOptions =>
+            services.AddCors(options =>
             {
-                corsOptions.AddDefaultPolicy(corsPolicyBuilder =>
+                options.AddDefaultPolicy(corsPolicyBuilder =>
                 {
                     corsPolicyBuilder.AllowAnyHeader();
                     corsPolicyBuilder.AllowAnyMethod();
