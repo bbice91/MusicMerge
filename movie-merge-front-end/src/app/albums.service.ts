@@ -9,7 +9,7 @@ import { Album, PostAlbums } from './models/Album';
 export class AlbumsService {
 
   constructor(private httpClient: HttpClient) { }
-  baseUrl = "https://localhost:7265/albums";
+  baseUrl = "https://localhost:5265/albums";
   
   // postAlbums(postAlbums: PostAlbums) {
   //   throw new Error('Method not implemented.');

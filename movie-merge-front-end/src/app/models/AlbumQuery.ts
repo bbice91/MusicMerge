@@ -1,8 +1,8 @@
-export interface AlbumQuery{
+export interface Artist{
     id: number,
     Gid: number,
     Name: string,
     Sort_Name: string,
 }
 
-export type PostAlbumQuery = Omit<AlbumQuery, "id, Gid">;
+export type PostArtist = Omit<Artist, "id, Gid">;
