@@ -2,15 +2,20 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MusicMerge
 {
-
-    public class Images
+    public class Thumbnails
     {
+        public string large { get; set; }
+    }
+    public class Image
+    {
+        public string image { get; set; }
+        public Thumbnails thumbnails { get; set; }
+
+
     }
     public class AlbumArtResponse
     {
-        public Guid Id { get; set; }
-        public Images i { get; set; }
-        public string LargeImage { get; set; }
+        public List<Image> images {  get; set; }
 
     }
 }

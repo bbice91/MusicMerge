@@ -14,7 +14,7 @@ namespace MusicMerge
 {
     public class AlbumArt
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public string? Image { get; set; }
         public string? LargeImage { get; set; }
     }
@@ -34,18 +34,19 @@ namespace MusicMerge
         [HttpGet("/release/{mbid}")]
         public AlbumArt GetAlbumArtByReleaseMbid(Guid mbid) // IEnumerable<Album>
         {
-            var albumArtArchiveConnection = $"https://coverartarchive.org/release/{mbid}";
+            var url = $"https://coverartarchive.org/release/{mbid}";
             var client = new HttpClient();
-            var response = client.GetAsync(albumArtArchiveConnection).Result;
-            var albumArtReceipt = response.Content.ReadAsStringAsync().Result;
-            var jSONGarbage = JsonSerializer.Deserialize<AlbumArtResponse>(albumArtReceipt);
+
+            var httpResponse = client.GetAsync(url).Result;
+            var albumArtReceipt = httpResponse.Content.ReadAsStringAsync().Result;
+
+            var response = JsonSerializer.Deserialize<AlbumArtResponse>(albumArtReceipt);
+            var image1 = response.images.First();
 
             var artistAlbumArt = new AlbumArt()
             {
-                Id = jSONGarbage.Id,
-                Image = jSONGarbage.Image,
-                LargeImage = jSONGarbage.LargeImage
-
+                Image = image1.image,
+                LargeImage = image1.thumbnails.large
             };
             return artistAlbumArt;  
         }
