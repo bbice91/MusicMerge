@@ -11,7 +11,7 @@ export class UsersService {
 
 
   constructor(router: Router, _usersService: UsersService, httpClient: HttpClient) { }
-  baseUrl = "https://localhost:5265/users";
+  baseUrl = "https://localhost:5265/api/users";
 
   // CreateUser(userName: Users, password: Users) {
   //   return this.httpClient.post<Users>(this.baseUrl, userName, password);

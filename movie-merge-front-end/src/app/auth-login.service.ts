@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, ReplaySubject, Subject } from 'rxjs';
-import { User } from './user';
+import { User } from './models/User';
 import {v4 as uuidv4 } from 'uuid';
 
  @Injectable({
@@ -10,7 +10,7 @@ import {v4 as uuidv4 } from 'uuid';
 export class AuthLoginService {
 
  constructor( private _http: HttpClient) { }
-  baseUrl = "https://localhost:5265/login"
+  baseUrl = "https://localhost:5265/api/login"
 
   userName$: ReplaySubject<User | null> = new ReplaySubject();
 
@@ -26,7 +26,7 @@ export class AuthLoginService {
       'client_id=6d95cb05880c44d4aba9865140cc7bfa',
       'state=${authState}',
       'allow_signup=true',
-      encodeURIComponent('redirect_uri=http://localhost:5265/authLogin'),
+      encodeURIComponent('redirect_uri=http://localhost:5265/api/authLogin'),
     ];
 
     //window.location.href = `http://accounts.spotify.com/authorize?$(queryParameters.join('&'))`;
