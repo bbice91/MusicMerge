@@ -2,20 +2,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MusicMerge
 {
-    public class Thumbnails
+    public class NeuralStyleResponse
     {
-        public string large { get; set; }
-    }
-    public class Image
-    {
-        public string image { get; set; }
-        public Thumbnails thumbnails { get; set; }
-
-
-    }
-    public class AlbumArtResponse
-    {
-        public List<Image> images {  get; set; }
+        public string result {  get; set; }
+        public string pid { get; set; }
+        public string filterjob_id { get; set; }
 
     }
 }
