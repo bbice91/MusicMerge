@@ -1,4 +1,7 @@
-# ArtNMusic
+# MusicMerge (f.k.a. ArtNMusic)
+
+Imbue a unique style on your favorite piece of Album Art, using a Neural Network API!
+
 Use the Spotify API to Authenticate User
 -https://developer.spotify.com/documentation/web-api/quick-start/
 
