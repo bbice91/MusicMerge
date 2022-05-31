@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/39133cba-74fc-4300-a2b0-4351e878f9ef/microsoft.web/sites/subscriptions/39133cba-74fc-4300-a2b0-4351e878f9ef/resourceGroups/MusicMerge/providers/Microsoft.Web/sites/MusicMerge",
+    "appService.deploySubpath": "music-merge-front-end"
+}
