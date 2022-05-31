@@ -17,11 +17,11 @@ namespace MusicMerge.Data
             : base(options)
         {
         }
-        public DbSet<MusicMerge.Album> Albums { get; set; }
+        public DbSet<Album> Albums { get; set; }
 
-        public DbSet<MusicMerge.GeneratedImage> GeneratedImages { get; set; }
+        public DbSet<GeneratedImage> GeneratedImages { get; set; }
 
-        public DbSet<MusicMerge.User> Users { get; set; }
+        public DbSet<User> Users { get; set; }
 
         //public MusicMergeContext(IOptions<DBConfig> dbConfig)
         //{
