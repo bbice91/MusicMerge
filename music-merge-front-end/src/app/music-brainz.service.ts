@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Artist } from './models/AlbumQuery';
+import { AlbumByArtist } from './models/AlbumByArtist';
 @Injectable({
   providedIn: 'root'
 })
@@ -10,8 +10,8 @@ export class MusicBrainzService {
 
   baseUrl = "http://localhost:5265/api/MusicBrainz/";
 
-  getArtist(){
-    return this.httpClient.get<Array<Artist>>(this.baseUrl);
+  getAlbumsByArtist(){
+    return this.httpClient.get<Array<AlbumByArtist>>(this.baseUrl);
 
 
   }

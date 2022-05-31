@@ -1,0 +1,17 @@
+<p>list-view works!</p>
+
+<div class="list">
+
+    <ul *ngIf="albums.length > 0; else waitingForAlbums">
+    
+        <li *ngFor="let album of albums">
+
+        </ul>
+</div>
+    <div class="waiting">
+
+        <ng-template #waitingForAlbums>
+            <p>collecting your Albums...</p>
+        </ng-template>
+
+    </div>

@@ -19,20 +19,21 @@ export class NavBarComponent implements OnInit {
       text: "Log In"
     },
     {
-      route: "list-view",
-      text: "Albums"
+      route: "artist-select",
+      text: "Select Artist"
+    },
+    {
+      route: "album-list-view",
+      text: "Albums By Artist"
+    },
+    {
+      route: "neural-style-upload",
+      text: "Generate Album Art with Custom Style"
     },
     {
       route: "generated-art-piece",
-      text: "Generate Album Art"
-    },
-    {
-      route: "album-upload",
-      text: "Upload Albums"
-    },
-
-
-
+      text: "User Generated Albums"
+    }
   ]
 
   ngOnInit(): void {

@@ -1,25 +1,24 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Album, PostAlbums } from './models/Album';
+import { AlbumByArtist } from './models/AlbumByArtist';
+import { ArtistSelectComponent } from './artist-select/artist-select.component';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class AlbumsService {
+export class AlbumsByArtistService {
 
   constructor(private httpClient: HttpClient) { }
-  baseUrl = "https://localhost:5265/api/albums";
+  baseUrl = "http://localhost:5265/api/MusicBrainz/";
+
   
-  // postAlbums(postAlbums: PostAlbums) {
-  //   throw new Error('Method not implemented.');
-  // }
   getAlbums() {
-    return this.httpClient.get<Array<Album>>(this.baseUrl);
+   
+    return this.httpClient.get<Array<AlbumByArtist>>(this.baseUrl);
   }
-  postAlbum(albums: PostAlbums) {
-    return this.httpClient.post<Album>(this.baseUrl, albums);
-  }
+
 }
 
 // create moodels in front end for properties album info, etc. need from back end

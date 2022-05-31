@@ -20,20 +20,21 @@
 </div>
 
   <body class =" albumUploadBody">
-	<form formgroup ="albumsFormGroup" (submit)="uploadAlbums()">
+	<form formgroup ="neuralStyleFormGroup" (submit)="uploadAlbumWithStyle()">
 		<div>
-			<label>First Album:</label>
-			<input type="text" formControlName="firstAlbumInput">
+			<label>Album:</label>
+			<input type="text" formControlName="albumInput">
 		</div>
 		<div>
-			<label>Second Album:</label>
-			<input type="text" formControlName="secondAlbumInput">
+			<label>StyleId:</label>
+			<input type="number" formControlName="styleInput">
 		</div>
 	
 	
 		<div>
-			<button type="submit" (click)="uploadAlbums()">Submit Request</button>
+			<button type="submit" (click)="uploadAlbumWithStyle()">Imbue the selected style to the Album Art!</button>
 		</div>
+
 	</form>
 
   </body>

@@ -1,20 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { AlbumUploadComponent } from './album-upload.component';
+import { NeuralStyleUploadComponent } from './neural-style-upload.component';
 
 describe('AlbumUploadComponent', () => {
-  let component: AlbumUploadComponent;
-  let fixture: ComponentFixture<AlbumUploadComponent>;
+  let component: NeuralStyleUploadComponent;
+  let fixture: ComponentFixture<NeuralStyleUploadComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AlbumUploadComponent ]
+      declarations: [ NeuralStyleUploadComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AlbumUploadComponent);
+    fixture = TestBed.createComponent(NeuralStyleUploadComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
