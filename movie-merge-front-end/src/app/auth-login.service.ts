@@ -13,9 +13,9 @@ export class AuthLoginService {
  constructor( private _http: HttpClient) { }
   baseUrl = "https://localhost:5265/api/login"
 
-  userName$: ReplaySubject<user | null> = new ReplaySubject();
+  userName$: ReplaySubject<User | null> = new ReplaySubject();
 
-  setUserName(userName : user | null) {
+  setUserName(userName : User | null) {
     this.userName$.next(userName);
   }
 
@@ -27,11 +27,12 @@ export class AuthLoginService {
       'client_id=6d95cb05880c44d4aba9865140cc7bfa',
       'state=${authState}',
       'allow_signup=true',
-      encodeURIComponent('redirect_uri=http://localhost:5265/api/authLogin'),
+      encodeURIComponent('redirect_uri=http://localhost:5265/api/login'),
     ];
 
     //window.location.href = `http://accounts.spotify.com/authorize?$(queryParameters.join('&'))`;
-    window.location.href = `https://accounts.spotify.com/authorize?${queryParameters.join('&')}`;
+    // window.location.href = `https://accounts.spotify.com/authorize?${queryParameters.join('&')}`;
+    window.location.href = `https://accounts.spotify.com/en/authorize?${queryParameters.join('&')}`;
   }
 
   // spotifylogin(userName: string) {
@@ -40,7 +41,7 @@ export class AuthLoginService {
   //  }
 
    spotifylogin(code: string) {
-    return this._http.get<user>(`${this.baseUrl}/login/${code}/Spotify`)
+    return this._http.get<User>(`${this.baseUrl}/login/${code}/Spotify`)
   }
 
   // autoLogin(id: number) {
