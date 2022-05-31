@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Text.Json.Serialization;
 
 namespace MusicMerge
 {
@@ -28,7 +29,12 @@ namespace MusicMerge
         {
 
             services.Configure<DBConfig>(Configuration.GetSection("ConnectionString"));
-            services.AddControllers();
+            services
+                .AddControllers()
+                .AddJsonOptions(jsonOptions =>
+                {
+                    jsonOptions.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+                });
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MusicMerge", Version = "v1" });

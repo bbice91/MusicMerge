@@ -1,16 +1,12 @@
 {
   "dependencies": {
-    "mssql1": {
-      "type": "mssql",
-      "connectionId": "ConnectionStrings:MusicMergeContext"
-    },
     "secrets1": {
       "type": "secrets",
       "connectionId": "VaultUri"
     },
-    "mssql2": {
+    "mssql1": {
       "type": "mssql",
-      "connectionId": "ConnectionStrings:SpotifyContext"
+      "connectionId": "ConnectionStrings:MusicMergeContext"
     }
   }
 }
