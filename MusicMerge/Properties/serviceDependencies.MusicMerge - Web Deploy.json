@@ -11,30 +11,6 @@
       "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/musicmerge/databases/MusicMerge",
       "type": "mssql.azure",
       "connectionId": "ConnectionStrings:MusicMergeContext"
-    },
-    "mssql2": {
-      "ignored": "true",
-      "suggestion": "true",
-      "type": "mssql",
-      "connectionId": "ConnectionStrings:SpotifyContext"
-    },
-    "mssql3": {
-      "ignored": "true",
-      "suggestion": "true",
-      "type": "mssql",
-      "connectionId": "ConnectionStrings:MusicBrainzContext"
-    },
-    "mssql4": {
-      "ignored": "true",
-      "suggestion": "true",
-      "type": "mssql",
-      "connectionId": "ConnectionStrings:NeuralStyleContext"
-    },
-    "mssql5": {
-      "ignored": "true",
-      "suggestion": "true",
-      "type": "mssql",
-      "connectionId": "ConnectionStrings:CoverArtArchiveContext"
     }
   }
 }
