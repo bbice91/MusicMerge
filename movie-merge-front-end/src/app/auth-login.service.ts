@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, ReplaySubject, Subject } from 'rxjs';
 import { User } from './models/User';
 import {v4 as uuidv4 } from 'uuid';
+import { user } from './user';
 
  @Injectable({
    providedIn: 'root'
@@ -26,21 +27,22 @@ export class AuthLoginService {
       'client_id=6d95cb05880c44d4aba9865140cc7bfa',
       'state=${authState}',
       'allow_signup=true',
-      encodeURIComponent('redirect_uri=http://localhost:5265/api/authLogin'),
+      encodeURIComponent('redirect_uri=http://localhost:5265/api/login'),
     ];
 
     //window.location.href = `http://accounts.spotify.com/authorize?$(queryParameters.join('&'))`;
-    window.location.href = `https://accounts.spotify.com/authorize?${queryParameters.join('&')}`;
+    // window.location.href = `https://accounts.spotify.com/authorize?${queryParameters.join('&')}`;
+    window.location.href = `https://accounts.spotify.com/en/authorize?${queryParameters.join('&')}`;
   }
 
   // spotifylogin(userName: string) {
   //  return this._http.get<User>(`${this.baseUrl}/login/${userName}/Spotify`)
 
   //  }
-  spotifylogin(code: string) {
-     return this._http.get<User>(`${this.baseUrl}/login/${code}/Spotify`)
 
-   }
+   spotifylogin(code: string) {
+    return this._http.get<User>(`${this.baseUrl}/login/${code}/Spotify`)
+  }
 
   // autoLogin(id: number) {
   //   return this._http.get<User>(`${this.baseUrl}/auto-login/${id}`);

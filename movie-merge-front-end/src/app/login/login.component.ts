@@ -5,6 +5,7 @@ import { switchMap } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { AuthLoginService } from '../auth-login.service';
+import { user } from '../user';
 
 @Component({
   selector: 'app-login',
@@ -32,7 +33,7 @@ export class LoginComponent implements OnInit {
       switchMap((p: {code: string}) => this._authLoginService.spotifylogin(p.code))
     ) 
     .subscribe(userName => {
-      localStorage.setItem("userName", JSON.stringify(userName));
+      localStorage.setItem("UserName", JSON.stringify(userName));
       this._authLoginService.setUserName(userName);
       this._router.navigate(["/"]);
     });
