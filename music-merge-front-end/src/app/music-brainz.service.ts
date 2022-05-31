@@ -8,7 +8,7 @@ export class MusicBrainzService {
 
   constructor(private httpClient: HttpClient) { }
 
-  baseUrl = "http://localhost:5265/api/MusicBrainz";
+  baseUrl = "http://localhost:5265/api/MusicBrainz/";
 
   getArtist(){
     return this.httpClient.get<Array<Artist>>(this.baseUrl);
