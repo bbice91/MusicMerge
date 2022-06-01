@@ -9,6 +9,7 @@ import { AlbumListViewComponent } from "./album-list-view/album-list-view.compon
 import { GeneratedArtPieceComponent } from './generated-art-piece/generated-art-piece.component';
 import { NgModule } from '@angular/core';
 import { LoginComponent } from './login/login.component';
+import { ArtistSelectComponent } from './artist-select/artist-select.component';
 
  
 
@@ -21,7 +22,8 @@ import { LoginComponent } from './login/login.component';
     NavBarComponent,
     AlbumListViewComponent,
     GeneratedArtPieceComponent,
-    LoginComponent
+    LoginComponent,
+    ArtistSelectComponent
   ],
   imports: [
     BrowserModule,
