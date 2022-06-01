@@ -12,6 +12,7 @@ export class GeneratedArtPieceComponent implements OnInit {
 
   @Input() imageURL1 = "https://cdn.openai.com/dall-e-2/demos/text2im/astronaut/horse/photo/0.jpg"
   @Input() imageURL2 = "https://cdn.openai.com/dall-e-2/demos/inpainting/flamingo_pool/a/0.jpg"
+  @Input() imageURL3 = "https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/the-scream-under-the-starry-night-mihaela-pater.jpg"
  
   ngOnInit(): void {
   }
