@@ -27,7 +27,11 @@ export class AuthLoginService {
       'client_id=be3700051b734c8c8cff0857f4e0f60d',
       'state=${authState}',
       'allow_signup=true',
+
+      //encodeURIComponent('redirect_uri=http://localhost:5265/api/authLogin'),
+
       encodeURIComponent('redirect_uri=http://localhost:56150/callback/'),
+
     ];
 
     window.location.href = `https://accounts.spotify.com/en/authorize?${queryParameters.join('&')}`;

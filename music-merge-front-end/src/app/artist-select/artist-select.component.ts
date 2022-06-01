@@ -21,7 +21,7 @@ export class ArtistSelectComponent implements OnInit {
 
   requestAlbumsByArtist() {
     const postArtist: AlbumByArtist = this.albumsByArtistFormGroup.value;
-    this._albumsByArtistService.getAlbums().subscribe();
+    this._albumsByArtistService.getAlbums("artist").subscribe();
   }
 
   reloadCurrentPage() {
