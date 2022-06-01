@@ -10,7 +10,7 @@
 }
 
 
-.homeDescription{
+.homeDirection{
 
     display: flex;
 	flex-direction: column;
@@ -20,12 +20,35 @@
     color: rgb(163, 88, 138)
 }
 
-.button{
+.homeDescrpition{
+
     display: flex;
 	flex-direction: column;
     justify-content: center;
     text-align: center;
-    background-color: rgb(196, 167, 129);
-    color: rgb(27, 13, 19)
-
+    background-color: rgb(122, 219, 223);
+    color: rgb(163, 88, 138)
 }
+
+.toArtist{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.button {
+    display: flex;
+	flex-direction: row;
+    justify-content: center;
+    text-align: center;
+    padding: 15px 25px;
+    font-size: 15px;
+    outline: none;
+    color: rgb(230, 210, 233);
+    background-color: #d1bdcf;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+  }

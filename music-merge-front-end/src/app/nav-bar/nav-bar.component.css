@@ -9,7 +9,7 @@
     font-size: 15px;
     text-align: center;
     outline: none;
-    color: rgb(230, 210, 233);
+    color: rgb(226, 182, 233);
     background-color: #d1bdcf;
     border: none;
     border-radius: 15px;
@@ -19,8 +19,8 @@
   
   .button:hover {background-color: #90dbbc}
   
-  .button:active {
+  /* .button:active {
     background-color: #3e8e41;
     box-shadow: 0 5px rgb(20, 48, 34);
     
-  }
+  } */
