@@ -14,9 +14,9 @@ export class AlbumsByArtistService {
   baseUrl = "http://localhost:5265/api/MusicBrainz/";
 
   
-  getAlbums() {
+  getAlbums(artist: string){
    
-    return this.httpClient.get<Array<AlbumByArtist>>(this.baseUrl);
+    return this.httpClient.get<Array<AlbumByArtist>>(`${this.baseUrl}/${artist}`);
   }
 
 }

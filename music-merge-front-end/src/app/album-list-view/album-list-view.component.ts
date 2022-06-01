@@ -8,7 +8,7 @@ import { Album } from '../models/Album';
   styleUrls: ['./album-list-view.component.css']
 })
 export class AlbumListViewComponent implements OnInit {
-  albums$ = this._albumsByArtistService.getAlbums();
+  albums$ = this._albumsByArtistService.getAlbums("artist");
 
   albums: Album[] = [];
 
@@ -16,7 +16,7 @@ export class AlbumListViewComponent implements OnInit {
   constructor(private _albumsByArtistService: AlbumsByArtistService) { }
 
   ngOnInit(): void {
-    this._albumsByArtistService.getAlbums().subscribe(albums => {
+    this._albumsByArtistService.getAlbums("artist").subscribe(albums => {
       this.albums = albums;
   })
 }

@@ -4,4 +4,4 @@ export interface AlbumByArtist{
     title: string
 }
 
-export type PostArtist = Omit<AlbumByArtist, "id, Gid">;
+export type PostArtist = Omit<AlbumByArtist, "id">;
