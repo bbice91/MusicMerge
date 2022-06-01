@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AlbumsService } from './albums-by-artist.service';
+import { AlbumsByArtistService } from './albums-by-artist.service';
 
 describe('AlbumsService', () => {
-  let service: AlbumsService;
+  let service: AlbumsByArtistService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(AlbumsService);
+    service = TestBed.inject(AlbumsByArtistService);
   });
 
   it('should be created', () => {

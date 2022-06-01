@@ -24,38 +24,29 @@ export class AuthLoginService {
     localStorage.setItem("authState", authState);
 
     const queryParameters = [
-      'client_id=6d95cb05880c44d4aba9865140cc7bfa',
+      'client_id=be3700051b734c8c8cff0857f4e0f60d',
       'state=${authState}',
       'allow_signup=true',
-      encodeURIComponent('redirect_uri=http://localhost:5265/api/authLogin'),
+
+      //encodeURIComponent('redirect_uri=http://localhost:5265/api/authLogin'),
+
+      encodeURIComponent('redirect_uri=http://localhost:56150/callback/'),
+
     ];
 
-    //window.location.href = `http://accounts.spotify.com/authorize?$(queryParameters.join('&'))`;
-    // window.location.href = `https://accounts.spotify.com/authorize?${queryParameters.join('&')}`;
     window.location.href = `https://accounts.spotify.com/en/authorize?${queryParameters.join('&')}`;
   }
-
-  // spotifylogin(userName: string) {
-  //  return this._http.get<User>(`${this.baseUrl}/login/${userName}/Spotify`)
-
-  //  }
 
    spotifylogin(code: string) {
     return this._http.get<User>(`${this.baseUrl}/login/${code}/Spotify`)
   }
 
-  // autoLogin(id: number) {
-  //   return this._http.get<User>(`${this.baseUrl}/auto-login/${id}`);
-  // }
+  autoLogin(id: number) {
+   return this._http.get<User>(`${this.baseUrl}/auto-login/${id}`);
+  }
 
-  // logout(id: number) {
-  //   return this._http.get(`${this.baseUrl}/logout/${id}`);
-  // }
-
-
-
-
-  
-
+logout(id: number) {
+ return this._http.get(`${this.baseUrl}/logout/${id}`);
+  }
 }
   
