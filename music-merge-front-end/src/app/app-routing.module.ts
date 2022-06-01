@@ -25,7 +25,7 @@ const routes: Routes = [
         component: AlbumListViewComponent
     },
     {
-        path: "neural-style-view",
+        path: "neural-style-upload",
         component: NeuralStyleUploadComponent
 
     },

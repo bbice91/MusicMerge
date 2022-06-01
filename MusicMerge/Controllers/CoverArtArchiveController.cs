@@ -32,7 +32,7 @@ namespace MusicMerge
 
 
         [HttpGet("/release/{mbid}")]
-        public AlbumArt GetAlbumArtByReleaseMbid(Guid mbid) // IEnumerable<Album>
+        public AlbumArt GetAlbumArtByReleaseMbid(Guid mbid)
         {
             var url = $"https://coverartarchive.org/release/{mbid}";
             var client = new HttpClient();

@@ -9,6 +9,7 @@ using MusicMerge.Data;
 using MetaBrainz.MusicBrainz;
 using MetaBrainz.MusicBrainz.Interfaces.Searches;
 using System.Text.Json;
+using System.Net;
 
 namespace MusicMerge
 {
@@ -21,9 +22,9 @@ namespace MusicMerge
 
     public class GeneratedArtInProcess
     {
-        public string? result { get; set; }
-        public string? photo_Id { get; set; }
-        public string? filterjob_id { get; set; }
+        public string? Result { get; set; }
+        public int? Photo_Id { get; set; }
+        public int? Filterjob_id { get; set; }
     }
 
     public class GeneratedArtProgress
@@ -49,27 +50,27 @@ namespace MusicMerge
 
 
         [HttpGet("/generateArt")]
-        public  GeneratedArtInProcess GenerateAlbumArt(string photo_url, int styleid)
+        public  GeneratedArtInProcess GenerateAlbumArt(string photo_url, int styleId)
         {
-            var url = $"https://neuralstyle.art/api?photo_url={photo_url}.json?api_key=NSHEBJXXFIOYFOIFXFSMIPJOVGXYZJLHYNKOASKTFLOUANXZ?style_id={styleid}";
+            var url = $"https://neuralstyle.art/api.json?photo_url={photo_url}?api_key=NSHEBJXXFIOYFOIFXFSMIPJOVGXYZJLHYNKOASKTFLOUANXZ?style_id={styleId}";
             var client = new HttpClient();
 
             var httpResponse = client.GetAsync(url).Result;
             var albumArtMergeRequest = httpResponse.Content.ReadAsStringAsync().Result;
 
             var response = JsonSerializer.Deserialize<NeuralStyleResponse>(albumArtMergeRequest);
-            var imageInProcess = response;
 
             var albumArtInProcess = new GeneratedArtInProcess()
             {
-                result = response.result,
-                photo_Id = response.pid,
-                filterjob_id = response.filterjob_id
+                Result = response.Result,
+                Photo_Id = response.Pid,
+                Filterjob_id = response.Filterjob_id
 
             };
 
             return albumArtInProcess;  
         }
+
 
         [HttpGet("/render/{photo_url}")]
         public GeneratedArtProgress QueryAlbumArtProgress(string filterjob_id)
