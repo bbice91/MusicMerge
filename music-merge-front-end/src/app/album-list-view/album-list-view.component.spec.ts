@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ListViewComponent } from './album-list-view.component';
+import { AlbumListViewComponent } from './album-list-view.component';
 
 describe('ListViewComponent', () => {
-  let component: ListViewComponent;
-  let fixture: ComponentFixture<ListViewComponent>;
+  let component: AlbumListViewComponent;
+  let fixture: ComponentFixture<AlbumListViewComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ListViewComponent ]
+      declarations: [ AlbumListViewComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ListViewComponent);
+    fixture = TestBed.createComponent(AlbumListViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
