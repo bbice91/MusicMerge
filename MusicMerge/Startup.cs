@@ -47,6 +47,7 @@ namespace MusicMerge
                     corsPolicyBuilder.AllowAnyHeader();
                     corsPolicyBuilder.AllowAnyMethod();
                     corsPolicyBuilder.AllowAnyOrigin();
+                    corsPolicyBuilder.WithOrigins("http://127.0.0.1:4200/artist-select", "http://127.0.0.1:4200/");
                 });
             });
         }

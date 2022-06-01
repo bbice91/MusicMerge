@@ -24,10 +24,10 @@ export class ArtistSelectComponent implements OnInit {
     this._albumsByArtistService.getAlbums("artist").subscribe();
   }
 
-  /*reloadCurrentPage() {
+  reloadCurrentPage() {
     window.location.reload();
    }
-*/
+
   ngOnInit(): void {
   }
 

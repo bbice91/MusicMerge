@@ -1,5 +1,5 @@
 export interface AlbumByArtist{
-    id: number,
+    mbid: string,
     artist: string,
     title: string
 }

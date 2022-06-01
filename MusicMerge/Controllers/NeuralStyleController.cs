@@ -52,7 +52,7 @@ namespace MusicMerge
         [HttpGet("/generateArt")]
         public  GeneratedArtInProcess GenerateAlbumArt(string photo_url, int styleId)
         {
-            var url = $"https://neuralstyle.art/api.json?photo_url={photo_url}?api_key=NSHEBJXXFIOYFOIFXFSMIPJOVGXYZJLHYNKOASKTFLOUANXZ?style_id={styleId}";
+            var url = $"https://neuralstyle.art/api.json&photo_url={photo_url}&api_key=NSHEBJXXFIOYFOIFXFSMIPJOVGXYZJLHYNKOASKTFLOUANXZ&style_id={styleId}";
             var client = new HttpClient();
 
             var httpResponse = client.GetAsync(url).Result;

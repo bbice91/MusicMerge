@@ -1,7 +1,7 @@
 import { AlbumsByArtistService } from "../albums-by-artist.service";
 
 export interface Album{
-    id: number;
+    mbid: string;
     title: string;
 }
 
