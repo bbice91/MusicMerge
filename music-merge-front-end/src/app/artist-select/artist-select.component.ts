@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { AlbumsByArtistService } from '../albums-by-artist.service';
 import { Router } from '@angular/router';
 import { AlbumByArtist } from '../models/AlbumByArtist';
+import { Album } from '../models/Album';
 
 @Component({
   selector: 'app-album-upload',
@@ -10,6 +11,7 @@ import { AlbumByArtist } from '../models/AlbumByArtist';
   styleUrls: ['./artist-select.component.css']
 })
 export class ArtistSelectComponent implements OnInit {
+  albums: Album[] = [];
 
   constructor(private _albumsByArtistService: AlbumsByArtistService) { }
   
@@ -26,11 +28,14 @@ export class ArtistSelectComponent implements OnInit {
 
   }
 
-  reloadCurrentPage() {
-    window.location.reload();
-   }
+  // reloadCurrentPage() {
+  //   window.location.reload();
+  //  }
 
   ngOnInit(): void {
-  }
+    this._albumsByArtistService.getAlbums("artist").subscribe(albums => {
+      this.albums = albums;
+  })
 
+}
 }
