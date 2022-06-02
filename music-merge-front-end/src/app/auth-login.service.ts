@@ -25,7 +25,7 @@ export class AuthLoginService {
     const queryParameters = [
       'client_id=be3700051b734c8c8cff0857f4e0f60d',
       'client_secret=7cd175eca3b4ef88b93601f7e08c75e',
-      'redirect_uri=http://localhost:4200/', 
+      'redirect_uri=https://localhost:4200/', 
       'response_type=code'
     ];
 
@@ -55,8 +55,8 @@ export class AuthLoginService {
    return this._http.get<User>(`${this.baseUrl}/auto-login/${id}`);
   }
 
-logout(id: number) {
- return this._http.get(`${this.baseUrl}/logout/${id}`);
+  logout(id: number) {
+    return this._http.get(`${this.baseUrl}/logout/${id}`);
   }
 }
   

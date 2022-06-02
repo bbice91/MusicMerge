@@ -28,6 +28,8 @@ export class ArtistSelectComponent implements OnInit {
 
   }
 
+
+
   // reloadCurrentPage() {
   //   window.location.reload();
   //  }
