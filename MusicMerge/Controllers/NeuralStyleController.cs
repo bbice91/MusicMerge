@@ -10,6 +10,9 @@ using MetaBrainz.MusicBrainz;
 using MetaBrainz.MusicBrainz.Interfaces.Searches;
 using System.Text.Json;
 using System.Net;
+using System.Text.Json.Serialization;
+using Newtonsoft.Json;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace MusicMerge
 {
@@ -49,28 +52,30 @@ namespace MusicMerge
         }
 
 
-        [HttpGet("/generateArt")]
-        public  GeneratedArtInProcess GenerateAlbumArt(string photo_url, int styleId)
+        /*[HttpGet("/generateArt")]
+        public GeneratedArtInProcess GenerateAlbumArtAsync(string photo_url, int styleId)
         {
-            var url = $"https://neuralstyle.art/api.json/photo_url={photo_url}&api_key=NSHEBJXXFIOYFOIFXFSMIPJOVGXYZJLHYNKOASKTFLOUANXZ&style_id={styleId}";
             var client = new HttpClient();
+            var requestContent = new FormUrlEncodedContent(new[]
+            { new KeyValuePair<string, string>("photo_url",$"{photo_url}"),
+              new KeyValuePair<string, string>("style_id",$"{styleId}"),
+              new KeyValuePair<string, string>("api_key","NSHEBJXXFIOYFOIFXFSMIPJOVGXYZJLHYNKOASKTFLOUANXZ")});
 
-            var httpResponse = client.GetAsync(url).Result;
-            var albumArtMergeRequest = httpResponse.Content.ReadAsStringAsync().Result;
+            var postToNeural = client.PostAsJsonAsync("https://neuralstyle.art/api.json", requestContent);
+            var response = JsonSerializer.Deserialize<NeuralStyleProgressResponse>(postToNeural);
 
-            var response = JsonSerializer.Deserialize<NeuralStyleResponse>(albumArtMergeRequest);
-
-            var albumArtInProcess = new GeneratedArtInProcess()
+            var albumArtRequest = new GeneratedArtProgress()
             {
-                Result = response.Result,
-                Photo_Id = response.Pid,
-                Filterjob_id = response.Filterjob_id
+                result = responseContent.Result,
+                status = responseContent.Photo_Id,
+                progress = responseContent.Filterjob_id,
 
             };
 
-            return albumArtInProcess;  
-        }
+            return albumArtRequest;
 
+        }
+        */
 
         [HttpGet("/render/{photo_url}")]
         public GeneratedArtProgress QueryAlbumArtProgress(string filterjob_id)
