@@ -36,7 +36,6 @@ namespace MusicMerge
                     builder.AllowAnyHeader()
                            .AllowAnyMethod()
                            .AllowAnyOrigin()
-                           .AllowCredentials()
                            .WithOrigins("http://127.0.0.1:4200/artist-select", "http://127.0.0.1:4200/");
 
                 });
@@ -67,10 +66,10 @@ namespace MusicMerge
 
             
 
-            app.UseHttpsRedirection();
 
             app.UseRouting();
             app.UseCors("MusicMerge");
+            app.UseHttpsRedirection();
 
             app.UseAuthorization();
 

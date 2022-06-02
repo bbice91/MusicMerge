@@ -5,13 +5,22 @@
     <ul *ngIf="albums.length > 0; else waitingForAlbums">
     
         <li *ngFor="let album of albums">
+            <div>
+                <p>Album Name: {{album.title}}</p>
+               
+            </div>
 
-        </ul>
-</div>
+        </li>
+
+    </ul>
+
     <div class="waiting">
 
-        <ng-template #waitingForAlbums>
-            <p>collecting your Albums...</p>
-        </ng-template>
-
+            <ng-template #waitingForAlbums>
+                <p>collecting your Albums...</p>
+            </ng-template>
+    
     </div>
+    
+</div>
+
