@@ -27,10 +27,27 @@
 		</div>
 	
 		<div>
-			<button type="button"(click)="requestAlbumsByArtist()">Search Albums by Artist</button>
+			<button type="button" (click)="requestAlbumsByArtist()">Search Albums by Artist</button>
 			<!-- NEED TO ROUTE TO ARTIST/ALBUM LIST ONCE BUTTON IS SELECTED -->
+			<!-- OR ADD THE LIST BELOW THE INPUT -->
 		</div>
 	</form>
+
+	<div class="list">
+
+		<ul *ngIf="albums.length > 0; else waitingForAlbums">
+		
+			<li *ngFor="let album of albums">
+	
+			</ul>
+	</div>
+		<div class="waiting">
+	
+			<ng-template #waitingForAlbums>
+				<p>collecting your Albums...</p>
+			</ng-template>
+	
+		</div>
 
   </body>
 </html>
