@@ -15,13 +15,15 @@ export class ArtistSelectComponent implements OnInit {
   
 
   albumsByArtistFormGroup = new FormGroup({
-    artistInput: new FormControl(''),
+    artistInput: new FormControl(),
 
   })
 
   requestAlbumsByArtist() {
-    const postArtist: AlbumByArtist = this.albumsByArtistFormGroup.value;
-    this._albumsByArtistService.getAlbums("artist").subscribe();
+    const logForCors = this.albumsByArtistFormGroup.value.artistInput;
+    console.log(logForCors)
+    this._albumsByArtistService.getAlbums(logForCors).subscribe(response => console.log(response));
+
   }
 
   reloadCurrentPage() {

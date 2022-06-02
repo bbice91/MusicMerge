@@ -4,6 +4,7 @@ import { BehaviorSubject, ReplaySubject, Subject } from 'rxjs';
 import { User } from './models/User';
 import {v4 as uuidv4 } from 'uuid';
 import { user } from './user';
+import { observeNotification } from 'rxjs/internal/Notification';
 
  @Injectable({
    providedIn: 'root'
@@ -19,23 +20,32 @@ export class AuthLoginService {
     this.userName$.next(userName);
   }
 
-  redirectSpotifyToken(){
-    const authState = uuidv4();
-    localStorage.setItem("authState", authState);
+  authorizeSpotifyToken(authCode : string ){
 
     const queryParameters = [
       'client_id=be3700051b734c8c8cff0857f4e0f60d',
-      'state=${authState}',
-      'allow_signup=true',
+      'client_secret=7cd175eca3b4ef88b93601f7e08c75e',
+      'redirect_uri=http://localhost:4200/', 
+      'response_type=code'
+    ];
 
-      //encodeURIComponent('redirect_uri=http://localhost:5265/api/authLogin'),
+    window.location.href = `https://accounts.spotify.com/authorize?${queryParameters.join('&')}`;
+    
+  }
+  
+  redirectSpotifyToken(){
 
-      encodeURIComponent('redirect_uri=http://localhost:56150/callback/'),
+    const queryParameters = [
+      'client_id=be3700051b734c8c8cff0857f4e0f60d',
+      'client_secret=7cd175eca3b4ef88b93601f7e08c75e',
+      'redirect_uri=http://localhost:4200/', 
+      'response_type=code'
 
     ];
 
-    window.location.href = `https://accounts.spotify.com/en/authorize?${queryParameters.join('&')}`;
+    window.location.href = `https://accounts.spotify.com/authorize?${queryParameters.join('&')}`;
   }
+  
 
    spotifylogin(code: string) {
     return this._http.get<User>(`${this.baseUrl}/login/${code}/Spotify`)

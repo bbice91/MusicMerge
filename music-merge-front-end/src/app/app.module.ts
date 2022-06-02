@@ -10,9 +10,7 @@ import { GeneratedArtPieceComponent } from './generated-art-piece/generated-art-
 import { NgModule } from '@angular/core';
 import { LoginComponent } from './login/login.component';
 import { ArtistSelectComponent } from './artist-select/artist-select.component';
-
- 
-
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,12 +21,13 @@ import { ArtistSelectComponent } from './artist-select/artist-select.component';
     AlbumListViewComponent,
     GeneratedArtPieceComponent,
     LoginComponent,
-    ArtistSelectComponent
+    ArtistSelectComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

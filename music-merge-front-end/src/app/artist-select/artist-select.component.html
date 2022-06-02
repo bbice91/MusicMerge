@@ -10,7 +10,7 @@
   </head>
 
   <div>
-	<h1 class=" albumByArtistLookupHeader">Provide an Artist!</h1>
+	<h1 class="albumByArtistLookupHeader">Provide an Artist!</h1>
 </div>
 <div>
 	<p>
@@ -19,15 +19,15 @@
 
 </div>
 
-  <body class =" albumByArtistLookupBody">
-	<form formgroup ="albumsByArtistFormGroup" (submit)="requestAlbumsByArtist()">
+  <body class ="albumByArtistLookupBody">
+	<form [formGroup] ="albumsByArtistFormGroup" (submit)="requestAlbumsByArtist()">
 		<div>
 			<label>Artist:</label>
 			<input type="text" formControlName="artistInput">
 		</div>
 	
 		<div>
-			<button type="submit" (click)="requestAlbumsByArtist()">Search Albums by Artist</button>
+			<button type="button"(click)="requestAlbumsByArtist()">Search Albums by Artist</button>
 			<!-- NEED TO ROUTE TO ARTIST/ALBUM LIST ONCE BUTTON IS SELECTED -->
 		</div>
 	</form>

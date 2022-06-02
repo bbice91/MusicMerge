@@ -17,7 +17,7 @@ export class AlbumsByArtistService {
   getAlbums(artist: string){
    
     return this.httpClient.get<Array<AlbumByArtist>>(`${this.baseUrl}/${artist}`);
-  }
+    }
 
 }
 
