@@ -6,8 +6,8 @@ namespace MusicMerge
     {
         [Key]
         public int Id { get; set; }
-        public string FirstAlbumInput { get; set; }
-        public string SecondAlbumInput { get; set; }
+        public string AlbumInput { get; set; }
+        public string StyleInput { get; set; }
         public string Description { get; set; }
         public DateTime CreatedDate { get; set; }   
         public DateTime UpdatedDate { get; set; }

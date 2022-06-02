@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Text.Json.Serialization;
 
 namespace MusicMerge
 {
@@ -27,10 +28,27 @@ namespace MusicMerge
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            services.Configure<DBConfig>(Configuration.GetSection("ConnectionString"));
+            services
+                .AddControllers()
+                .AddJsonOptions(jsonOptions =>
+                {
+                    jsonOptions.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+                });
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MusicMerge", Version = "v1" });
+            });
+
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(corsPolicyBuilder =>
+                {
+                    corsPolicyBuilder.AllowAnyHeader();
+                    corsPolicyBuilder.AllowAnyMethod();
+                    corsPolicyBuilder.AllowAnyOrigin();
+                    corsPolicyBuilder.WithOrigins("http://127.0.0.1:4200/artist-select", "http://127.0.0.1:4200/");
+                });
             });
         }
 
@@ -43,6 +61,8 @@ namespace MusicMerge
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "MusicMerge v1"));
             }
+
+            app.UseCors();
 
             app.UseHttpsRedirection();
 

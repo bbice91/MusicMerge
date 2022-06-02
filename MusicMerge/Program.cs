@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using MusicMerge.Data;
+using Azure.Identity;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<MusicMergeContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("MusicMergeContext") ?? throw new InvalidOperationException("Connection string 'MusicMergeContext' not found.")));

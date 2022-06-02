@@ -7,9 +7,17 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MusicMerge.Data;
 using MetaBrainz.MusicBrainz;
+using MetaBrainz.MusicBrainz.Interfaces.Searches;
 
 namespace MusicMerge
 {
+    public class Release
+    {
+        public Guid Id { get; set; }
+        public string? Name { get; set; }
+    }
+
+
     [Route("api/[controller]")]
     [ApiController]
     public class MusicBrainzController : ControllerBase
@@ -21,25 +29,24 @@ namespace MusicMerge
             _context = context;
         }
 
-        // GET: api/Albums
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Album>>> GetAlbums()
-        {
-          if (_context.Albums == null)
-          {
-              return NotFound();
-          }
-            return await _context.Albums.ToListAsync();
-        }
 
-        // GET: api/Albums/5
         [HttpGet("{artist}")]
-        public async Task<ActionResult<Album>> GetAlbumsByArtist(string artist)
+        public IEnumerable<Release> GetAlbumsByArtist(string artist) // IEnumerable<Album>
         {
             var q = new Query();
-            q.FindRecordings(artist);
-            return Ok(q);
+            var artistList = q.FindArtists(artist);
+            var artistEntry = artistList.Results.First().Item;
+
+            var name = artistEntry.Name;
+            var id = artistEntry.Id;
+
+            var artist1 = q.LookupArtist(id, Include.Releases);
+
+            var releases = artist1.Releases.Select(release => new Release() { Id = release.Id, Name = release.Title });
+
+            return releases;
         }
+
         private bool AlbumExists(int id)
         {
             return (_context.Albums?.Any(e => e.Id == id)).GetValueOrDefault();

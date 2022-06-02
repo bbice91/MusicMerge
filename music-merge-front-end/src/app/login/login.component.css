@@ -1,0 +1,19 @@
+.spotifyLogin{
+    display: flex;
+    flex-basis: 25%;
+	flex-direction: row;
+    justify-content: center;
+    text-align: center;
+
+}
+#button{
+    padding: 15px 25px;
+    font-size: 15px;
+    text-align: center;
+    outline: none;
+    color: rgb(226, 182, 233);
+    background-color: #d1bdcf;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+}

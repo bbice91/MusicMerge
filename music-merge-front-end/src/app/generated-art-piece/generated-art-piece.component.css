@@ -1,0 +1,31 @@
+.generatedArtHead{
+    display: flex;
+	flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    background-color: rgb(122, 219, 223);
+    color: rgb(163, 88, 138)
+
+}
+
+
+ .variousImages{
+
+    display: flex;
+	flex-direction: column;
+    justify-content: center;
+    text-align: center;
+
+} 
+
+.img3{
+
+    object-fit: fill;
+    object-position: left;
+    
+}
+.img4{
+
+    object-fit: fill;
+    object-position: right;
+}
