@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AlbumsByArtistService } from '../albums-by-artist.service';
+import { Observable } from 'rxjs';
+import { AlbumsService } from '../albums.service';
 import { Album } from '../models/Album';
+import { AlbumByArtist } from '../models/AlbumByArtist';
+import { MusicBrainzService } from '../music-brainz.service';
+
 
 @Component({
   selector: 'app-list-view',
@@ -8,15 +12,16 @@ import { Album } from '../models/Album';
   styleUrls: ['./album-list-view.component.css']
 })
 export class AlbumListViewComponent implements OnInit {
-  albums$ = this._albumsByArtistService.getAlbums("artist");
+  //albums$ = this._albumsByArtistService.getAlbums();
 
   albums: Album[] = [];
 
 
-  constructor(private _albumsByArtistService: AlbumsByArtistService) { }
+  constructor(private _albumsService: AlbumsService) { }
+
 
   ngOnInit(): void {
-    this._albumsByArtistService.getAlbums("artist").subscribe(albums => {
+    this._albumsService.getAlbums().subscribe(albums => {
       this.albums = albums;
   })
 }
