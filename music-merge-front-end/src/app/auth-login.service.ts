@@ -47,7 +47,7 @@ export class AuthLoginService {
   }
   
 
-   spotifylogin(code: string) {
+  spotifylogin(code: string) {
     return this._http.get<User>(`${this.baseUrl}/login/${code}/Spotify`)
   }
 
