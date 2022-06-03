@@ -46,9 +46,11 @@
     padding: 15px 25px;
     font-size: 15px;
     outline: none;
-    color: rgb(230, 210, 233);
-    background-color: #d1bdcf;
+    color:  rgb(122, 219, 223);
+    background-color: rgb(59, 63, 66);
     border: none;
     border-radius: 15px;
     box-shadow: 0 9px #999;
   }
+
+ 
