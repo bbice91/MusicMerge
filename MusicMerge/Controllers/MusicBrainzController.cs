@@ -8,7 +8,6 @@ using Microsoft.EntityFrameworkCore;
 using MusicMerge.Data;
 using MetaBrainz.MusicBrainz;
 using MetaBrainz.MusicBrainz.Interfaces.Searches;
-using Microsoft.AspNetCore.Cors;
 
 namespace MusicMerge
 {
@@ -18,10 +17,9 @@ namespace MusicMerge
         public string? Name { get; set; }
     }
 
-    
+
     [Route("api/[controller]")]
     [ApiController]
-
     public class MusicBrainzController : ControllerBase
     {
         private readonly MusicMergeContext _context;
@@ -31,8 +29,9 @@ namespace MusicMerge
             _context = context;
         }
 
+
         [HttpGet("{artist}")]
-        public IActionResult GetAlbumsByArtist(string artist) // IEnumerable<Album>
+        public IEnumerable<Release> GetAlbumsByArtist(string artist) // IEnumerable<Album>
         {
             var q = new Query();
             var artistList = q.FindArtists(artist);
@@ -43,9 +42,9 @@ namespace MusicMerge
 
             var artist1 = q.LookupArtist(id, Include.Releases);
 
-            var releases = artist1.Releases.Select(release => new Release() { Id = release.Id, Name = release.Title }).ToList();
+            var releases = artist1.Releases.Select(release => new Release() { Id = release.Id, Name = release.Title });
 
-            return Ok(releases);
+            return releases;
         }
 
         private bool AlbumExists(int id)

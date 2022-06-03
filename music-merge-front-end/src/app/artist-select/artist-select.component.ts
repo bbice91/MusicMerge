@@ -4,8 +4,6 @@ import { AlbumsByArtistService } from '../albums-by-artist.service';
 import { Router } from '@angular/router';
 import { AlbumByArtist } from '../models/AlbumByArtist';
 import { Album } from '../models/Album';
-import { filter, from, map, switchMap, tap } from 'rxjs';
-import { HttpEventType } from '@angular/common/http';
 
 @Component({
   selector: 'app-album-upload',
@@ -24,8 +22,9 @@ export class ArtistSelectComponent implements OnInit {
   })
 
   requestAlbumsByArtist() {
-    var artistInput = this.albumsByArtistFormGroup.value.artistInput;
-    this._albumsByArtistService.getAlbums(artistInput).subscribe(artistInput);
+    const logForCors = this.albumsByArtistFormGroup.value.artistInput;
+    console.log(logForCors)
+    this._albumsByArtistService.getAlbums(logForCors).subscribe(response => console.log(response));
 
   }
 

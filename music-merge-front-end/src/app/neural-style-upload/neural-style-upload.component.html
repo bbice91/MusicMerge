@@ -10,7 +10,7 @@
   </head>
 
   <div>
-	<h1 class=" albumUploadHeader">Provide an Album URL and Style!</h1>
+	<h1 class=" albumUploadHeader">Provide your Albums!</h1>
 </div>
 <div>
 	<p>
@@ -23,12 +23,14 @@
 	<form formgroup ="neuralStyleFormGroup" (submit)="uploadAlbumWithStyle()">
 		<div>
 			<label>Album:</label>
-			<input type="text" formControlName="photo_url">
+			<input type="text" formControlName="albumInput">
 		</div>
 		<div>
 			<label>StyleId:</label>
-			<input type="number" formControlName="styleId">
+			<input type="number" formControlName="styleInput">
 		</div>
+	
+	
 		<div>
 			<button type="submit" (click)="uploadAlbumWithStyle()">Imbue the selected style to the Album Art!</button>
 		</div>
