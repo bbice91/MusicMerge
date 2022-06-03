@@ -4,25 +4,29 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { AlbumsByArtistService } from '../albums-by-artist.service';
 import { PostAlbums } from '../models/Album';
 import { Router } from '@angular/router';
+import { NeuralStyleUploadService } from '../neural-style-upload.service';
 
 @Component({
-  selector: 'app-album-upload',
+  selector: 'app-neural-style-upload',
   templateUrl: './neural-style-upload.component.html',
   styleUrls: ['./neural-style-upload.component.css']
 })
 export class NeuralStyleUploadComponent implements OnInit {
 
-  constructor(private _albumsByArtistService: AlbumsByArtistService) { }
+  constructor(private _neuralStyleUploadService: NeuralStyleUploadService) {
+
+   }
   
 
   neuralStyleFormGroup = new FormGroup({
-    firstAlbumInput: new FormControl(''),
-    styleInput: new FormControl(''),
+    photo_url: new FormControl(),
+    styleId: new FormControl(),
 
   })
-
-  uploadAlbumWithStyle(){
-    
+  uploadAlbumWithStyle (){
+    var photo_url = this.neuralStyleFormGroup.value.photo_url;
+    var styleId = this.neuralStyleFormGroup.value.styleId;
+    this._neuralStyleUploadService.generateArt(photo_url, styleId).subscribe(response => console.log(response));
   }
 
   reloadCurrentPage() {
@@ -31,5 +35,7 @@ export class NeuralStyleUploadComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+
 
 }

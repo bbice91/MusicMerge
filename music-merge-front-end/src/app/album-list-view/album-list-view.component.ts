@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { filter, from, switchMap, tap } from 'rxjs';
 import { AlbumsByArtistService } from '../albums-by-artist.service';
 import { Album } from '../models/Album';
 
@@ -16,8 +17,13 @@ export class AlbumListViewComponent implements OnInit {
   constructor(private _albumsByArtistService: AlbumsByArtistService) { }
 
   ngOnInit(): void {
-    this._albumsByArtistService.getAlbums("artist").subscribe(albums => {
-      this.albums = albums;
+    this._albumsByArtistService.getAlbums("artist").pipe(
+      tap(console.log),
+      filter(x => x.ok),
+      switchMap(x => from(x.json())),
+      tap(console.log)
+    ).subscribe(albums => {
+      alert(albums)
   })
 }
 

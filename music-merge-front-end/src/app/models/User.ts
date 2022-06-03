@@ -4,8 +4,5 @@ export interface User{
     authority: string,
     CreatedDate: Date;    
     SpotifyGUID: number,
- 
- 
-
 }
 export type PostUser = Omit<User, "userId">;

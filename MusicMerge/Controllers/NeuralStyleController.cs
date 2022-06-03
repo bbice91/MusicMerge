@@ -13,13 +13,13 @@ using System.Net;
 
 namespace MusicMerge
 {
-    public class GenerateArt
-    {
-        public string? photo { get; set; }
-        public string? api_Key { get; set; }
-        public string? style { get; set; }
-    }
 
+    public class GenerateArtRequest
+    {
+        public string Photo_Url { get; set; }
+        public string Style_Id { get; set; }
+
+    }
     public class GeneratedArtInProcess
     {
         public string? Result { get; set; }
@@ -29,13 +29,12 @@ namespace MusicMerge
 
     public class GeneratedArtProgress
     {
-        public string? result { get; set; }
-        public string status { get; set; }
-        public int progress { get; set; }
-        public string? url { get; set; }
+        public string? Result { get; set; }
+        public string? Status { get; set; }
+        public int? Progress { get; set; }
+        public string? Url { get; set; }
 
     }
-
 
     [Route("api/[controller]")]
     [ApiController]
@@ -49,9 +48,10 @@ namespace MusicMerge
         }
 
 
-        [HttpGet("/generateArt")]
-        public  GeneratedArtInProcess GenerateAlbumArt(string photo_url, int styleId)
+        [HttpGet("/generateArt/{photo_url}/{styleId}/")]
+        public  GeneratedArtInProcess GenerateAlbumArt(string photo_url, string styleId)
         {
+            var requestParams = new GenerateArtRequest { Photo_Url = photo_url, Style_Id = styleId }; 
             var url = $"https://neuralstyle.art/api.json/photo_url={photo_url}&api_key=NSHEBJXXFIOYFOIFXFSMIPJOVGXYZJLHYNKOASKTFLOUANXZ&style_id={styleId}";
             var client = new HttpClient();
 
@@ -86,10 +86,10 @@ namespace MusicMerge
 
             var albumArtInProcess = new GeneratedArtProgress()
             {
-                result = response.result,
-                status = response.status,
-                progress = response.progress,
-                url = response.url
+                Result = response.result,
+                Status = response.status,
+                Progress = response.progress,
+                Url = response.url
             };
 
             return albumArtInProcess;

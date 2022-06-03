@@ -10,9 +10,10 @@ export class GeneratedArtPieceComponent implements OnInit {
   constructor() { }
 
 
-  @Input() imageURL1 = "https://cdn.openai.com/dall-e-2/demos/text2im/astronaut/horse/photo/0.jpg"
-  @Input() imageURL2 = "https://cdn.openai.com/dall-e-2/demos/inpainting/flamingo_pool/a/0.jpg"
-  @Input() imageURL3 = "https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/the-scream-under-the-starry-night-mihaela-pater.jpg"
+  @Input() imageURL1 = "https://neuralstyle.art/paintings/269269_XIUAFNFJ_600_wm.jpg"
+  @Input() imageURL2 = "https://neuralstyle.art/paintings/269539_CIUDLRUF_600_wm.jpg"
+  @Input() imageURL3 = "https://neuralstyle.art/paintings/269620_FFNHPCNM_600_wm.jpg"
+  @Input() imageURL4 = "https://neuralstyle.art/paintings/269716_QWRODXSD_600_wm.jpg"
  
   ngOnInit(): void {
   }

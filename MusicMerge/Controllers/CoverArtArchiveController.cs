@@ -9,6 +9,7 @@ using MusicMerge.Data;
 using MetaBrainz.MusicBrainz;
 using MetaBrainz.MusicBrainz.Interfaces.Searches;
 using System.Text.Json;
+using Microsoft.AspNetCore.Cors;
 
 namespace MusicMerge
 {
@@ -21,6 +22,7 @@ namespace MusicMerge
 
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors]
     public class CoverArtArchiveController : ControllerBase
     {
         private readonly MusicMergeContext _context;
@@ -35,13 +37,14 @@ namespace MusicMerge
         public AlbumArt GetAlbumArtByReleaseMbid(Guid mbid)
         {
             var url = $"https://coverartarchive.org/release/{mbid}";
-            var client = new HttpClient();
+            var client = new HttpClient(); 
 
             var httpResponse = client.GetAsync(url).Result;
             var albumArtReceipt = httpResponse.Content.ReadAsStringAsync().Result;
-
+                
             var response = JsonSerializer.Deserialize<AlbumArtResponse>(albumArtReceipt);
             var image1 = response.images.First();
+
 
             var artistAlbumArt = new AlbumArt()
             {
