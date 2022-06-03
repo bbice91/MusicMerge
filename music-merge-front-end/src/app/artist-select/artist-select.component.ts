@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { AlbumsByArtistService } from '../albums-by-artist.service';
 import { Router } from '@angular/router';
-import { AlbumByArtist } from '../models/AlbumByArtist';
+import { AlbumByArtist, PostArtist } from '../models/AlbumByArtist';
 import { Album } from '../models/Album';
 
 @Component({
@@ -17,7 +17,8 @@ export class ArtistSelectComponent implements OnInit {
   
 
   albumsByArtistFormGroup = new FormGroup({
-    artistInput: new FormControl(),
+    artistInput: new FormControl(""),
+    
 
   })
 
@@ -26,7 +27,9 @@ export class ArtistSelectComponent implements OnInit {
     console.log(logForCors)
     this._albumsByArtistService.getAlbums(logForCors).subscribe(response => console.log(response));
 
+    
   }
+
 
 
 
@@ -37,7 +40,8 @@ export class ArtistSelectComponent implements OnInit {
   ngOnInit(): void {
     this._albumsByArtistService.getAlbums("artist").subscribe(albums => {
       this.albums = albums;
-  })
+    })
 
+  }
 }
-}
+
