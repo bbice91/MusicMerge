@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { AlbumsByArtistService } from '../albums-by-artist.service';
 import { Router } from '@angular/router';
-import { AlbumByArtist } from '../models/AlbumByArtist';
+import { AlbumByArtist, PostArtist } from '../models/AlbumByArtist';
 import { Album } from '../models/Album';
 
 @Component({
@@ -11,22 +11,23 @@ import { Album } from '../models/Album';
   styleUrls: ['./artist-select.component.css']
 })
 export class ArtistSelectComponent implements OnInit {
-  albums: Album[] = [];
+  loading: boolean = false;
+
+  albums: AlbumByArtist[] = [];
 
   constructor(private _albumsByArtistService: AlbumsByArtistService) { }
-  
+
 
   albumsByArtistFormGroup = new FormGroup({
-    artistInput: new FormControl(),
-
+    artistInput: new FormControl(""),
   })
 
   requestAlbumsByArtist() {
-    const logForCors = this.albumsByArtistFormGroup.value.artistInput;
-    console.log(logForCors)
-    this._albumsByArtistService.getAlbums(logForCors).subscribe(response => console.log(response));
-
+    this.loading = true;
+    const artist = this.albumsByArtistFormGroup.value.artistInput;
+    this._albumsByArtistService.getAlbums(artist).subscribe(response => { console.log(response); this.albums = response; this.loading = false; });
   }
+
 
 
 
@@ -35,9 +36,6 @@ export class ArtistSelectComponent implements OnInit {
   //  }
 
   ngOnInit(): void {
-    this._albumsByArtistService.getAlbums("artist").subscribe(albums => {
-      this.albums = albums;
-  })
+  }
+}
 
-}
-}

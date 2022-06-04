@@ -1,31 +1,33 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  </head>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
 
-  <div>
+<div>
 	<h1 class="albumByArtistLookupHeader">Provide an Artist!</h1>
 </div>
 <div>
 	<p>
-		
+
 	</p>
 
 </div>
 
-  <body class ="albumByArtistLookupBody">
-	<form [formGroup] ="albumsByArtistFormGroup" (submit)="requestAlbumsByArtist()">
+<body class="albumByArtistLookupBody">
+	<form [formGroup]="albumsByArtistFormGroup" (submit)="requestAlbumsByArtist()">
 		<div>
 			<label>Artist:</label>
 			<input type="text" formControlName="artistInput">
 		</div>
-	
+
 		<div>
 			<button type="button" (click)="requestAlbumsByArtist()">Search Albums by Artist</button>
 			<!-- NEED TO ROUTE TO ARTIST/ALBUM LIST ONCE BUTTON IS SELECTED -->
@@ -34,31 +36,27 @@
 	</form>
 
 
-<div>
-	<p>
-		
-	</p>
-</div>
+	<div>
+		<p>
+
+		</p>
+	</div>
 	<div class="list">
 
-		<ul *ngIf="albums.length > 0; else waitingForAlbums">
-		
+		<ul *ngIf="!loading; else waitingForAlbums">
 			<li *ngFor="let album of albums">
-	
-			</ul>
+				Id: {{album.id}} Name: {{album.name}}
+			</li>
+		</ul>
 	</div>
-		<div class="waiting">
-	
-			<ng-template #waitingForAlbums>
-				<p>collecting your Albums...</p>
-			</ng-template>
-	
-		</div>
+	<div class="waiting">
 
-  </body>
+		<ng-template #waitingForAlbums>
+			<p>collecting your Albums...</p>
+		</ng-template>
+
+	</div>
+
+</body>
+
 </html>
-
-
-
-
-

@@ -33,11 +33,22 @@ namespace MusicMerge
         [HttpGet("{artist}")]
         public IEnumerable<Release> GetAlbumsByArtist(string artist) // IEnumerable<Album>
         {
+            if (artist is null)
+            {
+                return new List<Release>();
+            }
+
             var q = new Query();
             var artistList = q.FindArtists(artist);
+
+            if (artistList.TotalResults == 0)
+            {
+                return new List<Release>();
+            }
+
             var artistEntry = artistList.Results.First().Item;
 
-            var name = artistEntry.Name;
+            //var name = artistEntry.Name;
             var id = artistEntry.Id;
 
             var artist1 = q.LookupArtist(id, Include.Releases);

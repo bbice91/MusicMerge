@@ -1,7 +1,6 @@
 export interface AlbumByArtist{
-    mbid: string,
-    artist: string,
-    title: string
+    id: string,
+    name: string,
 }
 
 export type PostArtist = Omit<AlbumByArtist, "id">;
