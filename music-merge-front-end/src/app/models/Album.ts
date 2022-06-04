@@ -1,8 +1,8 @@
 
 
 export interface Album{
-    mbid: string;
-    title: string;
+    id: string;
+    name: string;
 }
 
 export type PostAlbums = Omit<Album, "Id">;
