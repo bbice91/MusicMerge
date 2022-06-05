@@ -4,6 +4,8 @@ import { AlbumsByArtistService } from '../albums-by-artist.service';
 import { Router } from '@angular/router';
 import { AlbumByArtist, PostArtist } from '../models/AlbumByArtist';
 import { Album } from '../models/Album';
+import { CoverartarchiveService } from '../cover-art-archive.service';
+import { CoverArtArchive } from '../models/CoverArtArchive';
 
 @Component({
   selector: 'app-album-upload',
@@ -15,7 +17,9 @@ export class ArtistSelectComponent implements OnInit {
 
   albums: AlbumByArtist[] = [];
 
-  constructor(private _albumsByArtistService: AlbumsByArtistService) { }
+  coverArts: CoverArtArchive[] = [];
+
+  constructor(private _albumsByArtistService: AlbumsByArtistService, private _coverArtArchiveService: CoverartarchiveService) { }
 
 
   
@@ -29,6 +33,11 @@ export class ArtistSelectComponent implements OnInit {
     this.loading = true;
     const artist = this.albumsByArtistFormGroup.value.artistInput;
     this._albumsByArtistService.getAlbums(artist).subscribe(response => { console.log(response); this.albums = response; this.loading = false; });
+  }
+
+  getAlbumArt(){
+    const mbid = this.albumsByArtistFormGroup.value.album.id;
+    this._coverArtArchiveService.getAlbumCoverArt(mbid);
   }
 
 
