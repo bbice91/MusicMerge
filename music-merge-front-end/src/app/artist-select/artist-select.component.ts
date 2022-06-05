@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Form, FormControl, FormGroup } from '@angular/forms';
 import { AlbumsByArtistService } from '../albums-by-artist.service';
 import { Router } from '@angular/router';
 import { AlbumByArtist, PostArtist } from '../models/AlbumByArtist';
@@ -18,9 +18,11 @@ export class ArtistSelectComponent implements OnInit {
   constructor(private _albumsByArtistService: AlbumsByArtistService) { }
 
 
+  
   albumsByArtistFormGroup = new FormGroup({
     artistInput: new FormControl(""),
   })
+
 
   requestAlbumsByArtist() {
     this.loading = true;

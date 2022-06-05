@@ -30,8 +30,7 @@
 
 		<div>
 			<button type="button" (click)="requestAlbumsByArtist()">Search Albums by Artist</button>
-			<!-- NEED TO ROUTE TO ARTIST/ALBUM LIST ONCE BUTTON IS SELECTED -->
-			<!-- OR ADD THE LIST BELOW THE INPUT -->
+
 		</div>
 	</form>
 
@@ -45,7 +44,7 @@
 
 		<ul *ngIf="!loading; else waitingForAlbums">
 			<li *ngFor="let album of albums">
-				Id: {{album.id}} Name: {{album.name}}
+				<!-- Id: {{album.id}} --> Name: {{album.name}}
 			</li>
 		</ul>
 	</div>
