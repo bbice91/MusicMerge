@@ -4,6 +4,16 @@ import { AlbumsByArtistService } from '../albums-by-artist.service';
 import { Router } from '@angular/router';
 import { AlbumByArtist, PostArtist } from '../models/AlbumByArtist';
 import { Album } from '../models/Album';
+import { CoverartarchiveService } from '../cover-art-archive.service';
+<<<<<<< Updated upstream
+import { CoverArtArchive } from '../models/CoverArtArchive';
+=======
+import { mergeMap, map, switchMap } from 'rxjs';
+import { pipe } from 'rxjs';
+import { observable } from 'rxjs';
+import { CoverArtArchive } from '../models/CoverArtArchive';
+import { makeBindingParser } from '@angular/compiler';
+>>>>>>> Stashed changes
 
 @Component({
   selector: 'app-album-upload',
@@ -15,7 +25,15 @@ export class ArtistSelectComponent implements OnInit {
 
   albums: AlbumByArtist[] = [];
 
-  constructor(private _albumsByArtistService: AlbumsByArtistService) { }
+<<<<<<< Updated upstream
+  coverArts: CoverArtArchive[] = [];
+=======
+  mbid: CoverArtArchive[] = [];
+
+  constructor(private _albumsByArtistService: AlbumsByArtistService, private _coverArtArchiveService: CoverartarchiveService) { }
+>>>>>>> Stashed changes
+
+  constructor(private _albumsByArtistService: AlbumsByArtistService, private _coverArtArchiveService: CoverartarchiveService) { }
 
 
   
@@ -29,6 +47,14 @@ export class ArtistSelectComponent implements OnInit {
     this.loading = true;
     const artist = this.albumsByArtistFormGroup.value.artistInput;
     this._albumsByArtistService.getAlbums(artist).subscribe(response => { console.log(response); this.albums = response; this.loading = false; });
+  }
+  
+
+
+
+  getAlbumArt(){
+    const mbid = this.albumsByArtistFormGroup.value.album.id;
+    this._coverArtArchiveService.getAlbumCoverArt(mbid);
   }
 
 
