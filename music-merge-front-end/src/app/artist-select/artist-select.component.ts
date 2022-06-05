@@ -21,6 +21,7 @@ export class ArtistSelectComponent implements OnInit {
   
   albumsByArtistFormGroup = new FormGroup({
     artistInput: new FormControl(""),
+    albumArt: new FormControl(""),
   })
 
 
