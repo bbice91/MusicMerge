@@ -22,18 +22,15 @@
 </div>
 
 <body class="albumByArtistLookupBody">
-	<form [formGroup]="albumsByArtistFormGroup" (submit)="requestAlbumsByArtist()">
 		<div>
 			<label>Artist:</label>
-			<input type="text" formControlName="artistInput">
+			<input type="text" [formControl]="artistInput">
 
 		</div>
 
 		<div>
 			<button type="button" (click)="requestAlbumsByArtist()">Search Albums by Artist</button>
-
 		</div>
-	</form>
 
 
 	<div>
