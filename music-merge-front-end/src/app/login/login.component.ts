@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { map } from 'rxjs';
 import { filter } from 'rxjs';
 import { switchMap } from 'rxjs';
@@ -19,6 +19,8 @@ export class LoginComponent implements OnInit {
     private _authLoginService: AuthLoginService, 
     private _router: Router
   ) {}
+
+  @Input() danceImg ="https://image.shutterstock.com/image-vector/group-young-happy-dancing-people-260nw-1203116578.jpg"
 
   onSpotifyLogin(){
     this._authLoginService.redirectSpotifyToken();
