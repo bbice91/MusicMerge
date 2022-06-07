@@ -17,6 +17,7 @@ namespace MusicMerge.Models
         public string uri { get; set; }
         public object followers { get; set; }
         public string login { get; set; }
+        public string webClient { get; set; }
 
 
 

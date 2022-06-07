@@ -5,6 +5,9 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Collections.Generic;
 using Microsoft.Extensions.Options;
+using System.Text;
+using System.Net;
+using System.Collections.Specialized;
 
 namespace MusicMerge.Services
 {
@@ -81,6 +84,24 @@ namespace MusicMerge.Services
             var user = JsonSerializer.Deserialize<User>(content, options);
 
             return user;
+        }
+
+        public void GetClientCredentialsAuthToken()
+        {
+            var spotifyClient = "be3700051b734c8c8cff0857f4e0f60d";
+            var spotifySecret = "7cd175eca3b4ef88b93601f7e08c75e";
+
+            var webClient = new WebClient();
+
+            var postparams = new NameValueCollection();
+            postparams.Add("grant_type", "client_credentials");
+
+            var authHeader = Convert.ToBase64String(Encoding.Default.GetBytes($"{spotifyClient}:{spotifySecret}"));
+            webClient.Headers.Add(HttpRequestHeader.Authorization, "Basic " + authHeader);
+
+            var tokenResponse = webClient.UploadValues("https://accounts.spotify.com/api/token", postparams);
+
+            var textResponse = Encoding.UTF8.GetString(tokenResponse);
         }
     }
 }

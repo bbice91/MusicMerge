@@ -9,8 +9,9 @@ using MusicMerge.Models;
 using MusicMerge.Services;
 using Microsoft.AspNetCore.Authentication.OAuth;
 using MusicMerge;
-
-
+using System.Text;
+using System.Net;
+using System.Collections.Specialized;
 
 namespace MusicMerge.Controllers
 {
@@ -28,29 +29,35 @@ namespace MusicMerge.Controllers
             _userContext = userContext;
         }
 
-        //[HttpGet]
-        //[Route("/authorize")]
-        //public async Task<IActionResult> Login([FromRoute] string code, [FromRoute] Authorize authorize)
-        //{
-        //    var token = authorize switch
-        //    {
-        //        Authorize.Spotify => await _spotifyService.GetToken(code),
-        //    };
+        [HttpGet]
+        [Route("/authorize")]
+        public async Task<IActionResult> Login([FromRoute] string code, [FromRoute] Authorize authorize)
+        {
+            var token = authorize switch
+            {
+                Authorize.Spotify => await _spotifyService.GetToken(code),
+            };
 
-        //    var spotifyUser = await _spotifyService.GetSpotifyUser(token.AccessToken);
+            var spotifyUser = await _spotifyService.GetSpotifyUser(token.AccessToken);
 
-        //    if (spotifyUser == null)
-        //    {
-        //        return Unauthorized();
-        //    }
+            if (spotifyUser == null)
+            {
+                return Unauthorized();
+            }
 
-        //    var user = await _userContext.UpsertSpotifyUser(spotifyUser, token.AccessToken);
+            await _userContext.UpsertSpotifyUser(spotifyUser, token.AccessToken);
 
-        //    return Ok(user);
-        //}
+            return Ok();
+        }
 
         //[HttpPost]
         //[Route("/api/token")]
+
+
+        //public async Task<IActionResult> GetAccess([FromRoute] string accessToken, string grantType)
+        //{
+
+        //}
 
     }
 }

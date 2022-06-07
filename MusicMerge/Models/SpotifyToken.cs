@@ -12,5 +12,11 @@ namespace MusicMerge.Models
 
         [JsonPropertyName("resonse_type")]
         public string ResponseType { get; set; }
+
+        [JsonPropertyName("grant_type")]
+        public string GrantType { get; set; }
+
+        [JsonPropertyName("token_type")]
+        public string TokenType { get; set; }
     }
 }
