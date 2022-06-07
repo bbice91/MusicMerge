@@ -1,3 +1,17 @@
+.logHeader{
+
+    display: flex;
+	flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    background-color: rgb(108, 96, 116);
+    color: rgb(219, 177, 231)
+
+
+}
+
+
+
 .spotifyLogin{
     display: flex;
     flex-basis: 25%;
@@ -16,4 +30,15 @@
     border: none;
     border-radius: 15px;
     box-shadow: 0 9px #999;
+}
+
+.image{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    
+        object-fit: fill;
+        object-position: center;
+        
+    
 }
