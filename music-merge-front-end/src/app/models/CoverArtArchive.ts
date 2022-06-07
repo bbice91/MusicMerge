@@ -1,9 +1,8 @@
 
 
 export interface CoverArtArchive{
-    mbid: string;
-    coverArt: string;
-    
+    image: string;
+    largeImage: string;    
 }
 
 export type CovertArtImage = Omit<CoverArtArchive, "mbid">;

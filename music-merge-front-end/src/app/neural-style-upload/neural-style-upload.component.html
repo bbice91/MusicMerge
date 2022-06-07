@@ -22,17 +22,23 @@
   <body class ="neuralStyleUploadBody">
 	<form formgroup ="neuralStyleFormGroup" (submit)="uploadAlbumWithStyle()">
 		<div>
-			<label>Album:</label>
+			<label>Album Art Link:</label>
 			<input type="text" formControlName="albumInput">
 		</div>
 		<div>
 			<label>StyleId:</label>
-			<input type="number" formControlName="styleInput">
+			<select name="styleID" id="#">
+				<option selected="selected" value="vanGogh">Van Gogh</option>
+				<option value="abstract">Abstract</option>
+				<option value="mosaic">Mosaic</option>
+				<option value="trippy">Trippy</option>
+				<option value="beads">Beads</option>
+				</select>
 		</div>
 	
 	
 		<div>
-			<button type="submit" (click)="uploadAlbumWithStyle()">Imbue the selected style to the Album Art!</button>
+			<button type="submit" (click)="uploadAlbumWithStyle()">Choose Your Album Style!</button>
 		</div>
 
 	</form>

@@ -9,12 +9,12 @@ using MusicMerge.Data;
 using MetaBrainz.MusicBrainz;
 using MetaBrainz.MusicBrainz.Interfaces.Searches;
 using System.Text.Json;
+using System.Net.Http.Headers;
 
 namespace MusicMerge
 {
     public class AlbumArt
     {
-        public int Id { get; set; }
         public string? Image { get; set; }
         public string? LargeImage { get; set; }
     }
@@ -36,10 +36,13 @@ namespace MusicMerge
         {
             var url = $"https://coverartarchive.org/release/{mbid}";
             var client = new HttpClient();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             var httpResponse = client.GetAsync(url).Result;
             var albumArtReceipt = httpResponse.Content.ReadAsStringAsync().Result;
 
+            if (httpResponse.IsSuccessStatusCode)
+            {
             var response = JsonSerializer.Deserialize<AlbumArtResponse>(albumArtReceipt);
             var image1 = response.images.First();
 
@@ -49,6 +52,10 @@ namespace MusicMerge
                 LargeImage = image1.thumbnails.large
             };
             return artistAlbumArt;  
+
+            }
+
+            return null;
         }
 
 

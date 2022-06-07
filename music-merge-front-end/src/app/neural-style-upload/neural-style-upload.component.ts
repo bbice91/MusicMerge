@@ -24,6 +24,13 @@ export class NeuralStyleUploadComponent implements OnInit {
   uploadAlbumWithStyle(){
     
   }
+  vanGogh = new Option("{{5879}}")
+  abstract = new Option("{{28059}}")
+  mosaic = new Option("{{4719}}")
+  trippy = new Option("{{2056}}")
+  beads = new Option("{{37944}}")
+
+  // Bob working on integrating NS to alter album image art, will update style Id's once complete
 
   reloadCurrentPage() {
     window.location.reload();

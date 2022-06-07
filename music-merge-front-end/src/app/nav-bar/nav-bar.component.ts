@@ -24,7 +24,7 @@ export class NavBarComponent implements OnInit {
     },
     {
       route: "album-list-view",
-      text: "Albums By Artist"
+      text: "Get Album Art"
     },
     {
       route: "neural-style-upload",
