@@ -13,6 +13,8 @@ using System.Net;
 using System.Text.Json.Serialization;
 using Newtonsoft.Json;
 using JsonSerializer = System.Text.Json.JsonSerializer;
+using System.Net.Http.Headers;
+using System.Text;
 
 namespace MusicMerge
 {
@@ -25,16 +27,12 @@ namespace MusicMerge
 
     public class GeneratedArtInProcess
     {
-        public string? Result { get; set; }
-        public int? Photo_Id { get; set; }
-        public int? Filterjob_id { get; set; }
+        public string? SubmissionId { get; set; }
     }
 
     public class GeneratedArtProgress
     {
-        public string? result { get; set; }
-        public string status { get; set; }
-        public int progress { get; set; }
+        public string? status { get; set; }
         public string? url { get; set; }
 
     }
@@ -51,49 +49,63 @@ namespace MusicMerge
             _context = context;
         }
 
+        class DeepArtRequest
+        {
+            public string? styleId { get; set; }
+            public string? imageBase64Encoded { get; set; }
+        }
 
-        /*[HttpGet("/generateArt")]
-        public GeneratedArtInProcess GenerateAlbumArtAsync(string photo_url, int styleId)
+        class DeepArtResponse
+        {
+            public string? submissionId { get; set; }
+        }
+
+        class DeepArtImageResultResponse
+        {
+            public string? status { get; set; }
+            public string? url { get; set; }
+        }
+
+        [HttpGet("generateArt")]
+        public GeneratedArtInProcess GenerateAlbumArtAsync(string photo_url, string style_id)
         {
             var client = new HttpClient();
-            var requestContent = new FormUrlEncodedContent(new[]
-            { new KeyValuePair<string, string>("photo_url",$"{photo_url}"),
-              new KeyValuePair<string, string>("style_id",$"{styleId}"),
-              new KeyValuePair<string, string>("api_key","NSHEBJXXFIOYFOIFXFSMIPJOVGXYZJLHYNKOASKTFLOUANXZ")});
+            var imageResponse = client.GetAsync(photo_url).Result;
+            var imageBinary = imageResponse.Content.ReadAsByteArrayAsync().Result;
+            var imageBase64 = Convert.ToBase64String(imageBinary);
 
-            var postToNeural = client.PostAsJsonAsync("https://neuralstyle.art/api.json", requestContent);
-            var response = JsonSerializer.Deserialize<NeuralStyleProgressResponse>(postToNeural);
+            var request = new DeepArtRequest { styleId = style_id, imageBase64Encoded = imageBase64 };
+            var requestJson = JsonSerializer.Serialize(request);
+            var requestContent = new StringContent(requestJson, Encoding.UTF8, "application/json");
+            requestContent.Headers.Add("x-api-key", "FcU8v502Pq5YdTrzylfaA1wUiNBaI9B847rXIr3W");
 
-            var albumArtRequest = new GeneratedArtProgress()
+            var httpResponse = client.PostAsync("https://api.deeparteffects.com/v1/noauth/upload", requestContent).Result;
+            var responseContent = httpResponse.Content.ReadAsStringAsync().Result;
+            var response = JsonSerializer.Deserialize<DeepArtResponse>(responseContent);
+
+            var albumArtRequest = new GeneratedArtInProcess
+()
             {
-                result = responseContent.Result,
-                status = responseContent.Photo_Id,
-                progress = responseContent.Filterjob_id,
-
+                SubmissionId = response.submissionId
             };
 
             return albumArtRequest;
 
         }
-        */
 
-        [HttpGet("/render/{photo_url}")]
-        public GeneratedArtProgress QueryAlbumArtProgress(string filterjob_id)
+
+        [HttpGet("getGeneratedArt/{submission_id}")]
+        public GeneratedArtProgress GetGeneratedArt(string submission_id)
         {
-            var url = $"https://neuralstyle.art/api/{filterjob_id}.json?api_key=NSHEBJXXFIOYFOIFXFSMIPJOVGXYZJLHYNKOASKTFLOUANXZ";
             var client = new HttpClient();
-
-            var httpResponse = client.GetAsync(url).Result;
-            var albumArtMergeRequest = httpResponse.Content.ReadAsStringAsync().Result;
-
-            var response = JsonSerializer.Deserialize<NeuralStyleProgressResponse>(albumArtMergeRequest);
-            var imageInProcess = response;
+            client.DefaultRequestHeaders.Add("x-api-key", "FcU8v502Pq5YdTrzylfaA1wUiNBaI9B847rXIr3W");
+            var httpResponse = client.GetAsync( "https://api.deeparteffects.com/v1/noauth/result?submissionId=" + submission_id).Result;
+            var responseContent = httpResponse.Content.ReadAsStringAsync().Result;
+            var response = JsonSerializer.Deserialize<DeepArtImageResultResponse>(responseContent);
 
             var albumArtInProcess = new GeneratedArtProgress()
             {
-                result = response.result,
                 status = response.status,
-                progress = response.progress,
                 url = response.url
             };
 

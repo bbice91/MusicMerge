@@ -1,50 +1,54 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  </head>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
 
-  <div>
+<div>
 	<h1 class=" albumUploadHeader">Provide your Albums!</h1>
 </div>
 <div>
 	<p>
-		
+
 	</p>
 
 </div>
 
-  <body class ="neuralStyleUploadBody">
-	<form formgroup ="neuralStyleFormGroup" (submit)="uploadAlbumWithStyle()">
-		<div>
-			<label>Album Art Link:</label>
-			<input type="text" formControlName="albumInput">
-		</div>
-		<div>
-			<label>StyleId:</label>
-			<select name="styleID" id="#" class="dropdown">
-				<option selected="selected" value="vanGogh">Van Gogh</option>
-				<option value="abstract">Abstract</option>
-				<option value="mosaic">Mosaic</option>
-				<option value="trippy">Trippy</option>
-				<option value="beads">Beads</option>
-				</select>
-		</div>
-	
-	
-		<div>
-			<button type="submit" (click)="uploadAlbumWithStyle()">Choose Your Album Style!</button>
-		</div>
+<body class="neuralStyleUploadBody">
+	<div>
+		<label>Album Art Link:</label>
+		<input type="text" [formControl]="albumUrlInput">
+	</div>
+	<div>
+		<label>StyleId:</label>
+		<select name="styleID" id="#" class="dropdown" [formControl]="styleInput">
+			<option selected="selected" value="c7984d3c-1560-11e7-afe2-06d95fe194ed">Abstract</option>
+			<option value="ed8e394f-1b90-11e7-afe2-06d95fe194ed">Colorful</option>
+		</select>
+	</div>
 
-	</form>
+	<div>
+		<button type="submit" (click)="generateArt()">Generate New Album Art</button>
+	</div>
 
-  </body>
+	<div class="list" *ngIf="!loading; else waitingForAlbums">
+		{{generatedArtProgress.status}}<br/>
+		<img [src]="generatedArtProgress.url"/>
+	</div>
+
+	<div class="waiting">
+		<ng-template #waitingForAlbums>
+			<p>Generating album art...</p>
+		</ng-template>
+
+	</div>
+</body>
+
 </html>
-
-
-

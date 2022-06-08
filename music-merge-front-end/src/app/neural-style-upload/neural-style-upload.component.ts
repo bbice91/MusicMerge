@@ -4,6 +4,9 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { AlbumsByArtistService } from '../albums-by-artist.service';
 import { PostAlbums } from '../models/Album';
 import { Router } from '@angular/router';
+import { GeneratedImagesService } from '../generated-images.service';
+import { GeneratedArtProgress } from '../models/GeneratedArtProgress';
+import { debounceTime, delay, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-album-upload',
@@ -12,31 +15,33 @@ import { Router } from '@angular/router';
 })
 export class NeuralStyleUploadComponent implements OnInit {
 
-  constructor(private _albumsByArtistService: AlbumsByArtistService) { }
-  
+  albumUrlInput = new FormControl('');
+  styleInput = new FormControl('');
+  loading: boolean = false;
+  generatedArtProgress: GeneratedArtProgress = { status: "", url:"" };
 
-  neuralStyleFormGroup = new FormGroup({
-    firstAlbumInput: new FormControl(''),
-    styleInput: new FormControl(''),
-
-  })
-
-  uploadAlbumWithStyle(){
-    
-  }
-  vanGogh = new Option("{{5879}}")
-  abstract = new Option("{{28059}}")
-  mosaic = new Option("{{4719}}")
-  trippy = new Option("{{2056}}")
-  beads = new Option("{{37944}}")
-
-  // Bob working on integrating NS to alter album image art, will update style Id's once complete
+  constructor(private generatedImagesService: GeneratedImagesService) { }
 
   reloadCurrentPage() {
     window.location.reload();
-   }
+  }
 
   ngOnInit(): void {
+  }
+
+  generateArt(): void {
+    this.loading = true;
+    const photo_url = this.albumUrlInput.value;
+    const style_id = this.styleInput.value;
+    this.generatedImagesService.generateArt(photo_url, style_id).pipe(
+        delay(5000),
+        switchMap(resp => this.generatedImagesService.getGeneratedImage(resp.submissionId)),
+    ).subscribe(
+      response => { 
+        console.log(response); 
+        this.generatedArtProgress = response; 
+        this.loading = false; 
+      });
   }
 
 }
