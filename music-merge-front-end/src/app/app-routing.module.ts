@@ -11,15 +11,11 @@ const routes: Routes = [
 
     {
         path: "home",
-        component: HomeComponent
+        component: ArtistSelectComponent
     },
     {
         path: "login",
         component: LoginComponent
-    },
-    {
-        path: "artist-select",
-        component: ArtistSelectComponent
     },
     {
         path: "album-list-view",

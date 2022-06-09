@@ -2,9 +2,13 @@
     list-style: none;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #ffc9c9;
+    height: 5em;
+
 }
-#button {
+.btns {
     padding: 15px 25px;
     font-size: 15px;
     text-align: center;
