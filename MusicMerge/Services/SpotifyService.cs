@@ -84,7 +84,7 @@ namespace MusicMerge.Services
             };
 
             var user = JsonSerializer.Deserialize<SpotifyUser>(content, options);
-
+            
             return user;
         }
 

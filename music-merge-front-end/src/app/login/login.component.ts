@@ -25,7 +25,6 @@ export class LoginComponent implements OnInit {
   onSpotifyLogin(){
     this._authLoginService.redirectSpotifyToken();
   }
- 
 
   ngOnInit(): void { 
 
@@ -34,14 +33,12 @@ export class LoginComponent implements OnInit {
       filter(p => p.code),
       switchMap((p: {code: string}) => this._authLoginService.spotifylogin(p.code))
     ) 
-    .subscribe(userName => {
-      localStorage.setItem("UserName", JSON.stringify(userName));
-      this._authLoginService.setUserName(userName);
-      this._router.navigate(["/"]);
+    .subscribe(user => {
+      localStorage.setItem("user", JSON.stringify(user));
+      this._authLoginService.setUserName(user);
+      this._router.navigate(["/", "home"]);
     });
   }
-
-  
 
 }
 

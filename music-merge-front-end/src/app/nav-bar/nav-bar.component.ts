@@ -19,10 +19,6 @@ export class NavBarComponent implements OnInit {
     //   text: "Log In"
     // },
     {
-      route: "artist-select",
-      text: "Select Artist"
-    },
-    {
       route: "album-list-view",
       text: "Get Album Art"
     },

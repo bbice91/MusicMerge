@@ -10,6 +10,7 @@ import { mergeMap, map, switchMap } from 'rxjs';
 import { pipe } from 'rxjs';
 import { observable } from 'rxjs';
 import { makeBindingParser } from '@angular/compiler';
+import { AuthLoginService } from '../auth-login.service';
 
 
 @Component({
@@ -17,24 +18,38 @@ import { makeBindingParser } from '@angular/compiler';
   templateUrl: './artist-select.component.html',
   styleUrls: ['./artist-select.component.css']
 })
-export class ArtistSelectComponent {
+export class ArtistSelectComponent implements OnInit {
   loading: boolean = false;
 
   albums: AlbumByArtist[] = [];
 
   artistInput = new FormControl("");
 
-  constructor(private _albumsByArtistService: AlbumsByArtistService) { }
+  constructor(
+    private _albumsByArtistService: AlbumsByArtistService, 
+    private _authService: AuthLoginService,
+    private _router: Router
+  ) { }
+
+
+  ngOnInit(): void {
+    const user = this._authService.tryGetUser();
+    if(user) {
+      this._authService.userName$.next(user);
+    } else {
+      this._router.navigate(['/', 'login']);
+    }
+  }
 
   requestAlbumsByArtist() {
     this.loading = true;
     const artist = this.artistInput.value;
-    console.log(artist); 
+    console.log(artist);
     this._albumsByArtistService.getAlbums(artist).subscribe(
-      response => { 
-        console.log(response); 
-        this.albums = response; 
-        this.loading = false; 
+      response => {
+        console.log(response);
+        this.albums = response;
+        this.loading = false;
       });
   }
 
