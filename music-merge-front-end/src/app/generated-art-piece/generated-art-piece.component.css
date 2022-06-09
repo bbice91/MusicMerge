@@ -18,28 +18,12 @@
 
 }  
 
-.img1{
+.image-list{
     display: flex;
 	flex-direction: row;
     justify-content: left;
+    flex-wrap: wrap;
 
     object-fit: fill;
-    object-position: left;
-    
-}
-.img2{
-    display: flex;
-	flex-direction: row;
-    justify-content: left;
-
-    object-fit: fill;
-    object-position: left;
-}
-.img3{
-    display: flex;
-	flex-direction: row;
-    justify-content: left;
-
-    object-fit: fill;
-    object-position: left;
+    object-position: center;
 }

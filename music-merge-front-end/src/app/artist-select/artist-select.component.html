@@ -2,36 +2,40 @@
 	<h1 class="albumByArtistLookupHeader">Provide an Artist!</h1>
 </div>
 
-<body class="albumByArtistLookupBody">
-	<div>
-		<label>Artist:</label>
-		<input type="text" [formControl]="artistInput">
 
-	</div>
+<div>
+	<label>Artist:</label>
+	<input type="text" [formControl]="artistInput">
 
-	<div>
-		<button type="button" (click)="requestAlbumsByArtist()">Search Albums by Artist</button>
-	</div>
+</div>
 
-	<div class="list">
+<div>
+	<button type="button" (click)="requestAlbumsByArtist()">Search Albums by Artist</button>
+</div>
 
-		<ul class="image-list" *ngIf="!loading && (requestAlbumsByArtist$ | async) as albums ; else waitingForAlbums">
-			<li class="image-list-item" *ngFor="let album of albums">
-				<a>
-					<p>
-						Name: {{album.name}} From This Artist: {{album.name}}
-					</p>
-					<img [src]="album.largeImage">
-				</a>
-			</li>
-		</ul>
+<div class="list">
 
-	</div>
-	<div class="waiting">
+	<ul class="image-list" *ngIf="!loading && (requestAlbumsByArtist$ | async) as albums; else waitingForAlbums">
+		<li class="image-list-item" *ngFor="let album of albums">
+			<a class="img-thumbnail" (click)="routeToNeuralLink(album.largeImage)">
+				<p>
+					Name: {{album.name}} From This Artist: {{album.name}}
+				</p>
+				<img [src]="album.largeImage">
+			</a>
+		</li>
+	</ul>
 
-		<ng-template #waitingForAlbums>
-			<p>collecting your Albums...</p>
-		</ng-template>
+</div>
+<div class="waiting">
 
-	</div>
+	<ng-template #waitingForAlbums>
 
+		<div *ngIf="loading" class="spinner">
+
+		</div>
+
+		<p>collecting your Albums...</p>
+	</ng-template>
+
+</div>

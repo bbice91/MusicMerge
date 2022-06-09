@@ -14,7 +14,7 @@ export class AuthLoginService {
   constructor(private _http: HttpClient) { }
   baseUrl = "http://localhost:5265/api/oauth"
 
-  userName$: ReplaySubject<User | null> = new ReplaySubject();
+  user$: ReplaySubject<User | null> = new ReplaySubject();
 
   tryGetUser(): null | User {
     const user: string | null = localStorage.getItem("user");
@@ -26,7 +26,7 @@ export class AuthLoginService {
   }
 
   setUserName(userName: User | null) {
-    this.userName$.next(userName);
+    this.user$.next(userName);
   }
 
   authorizeSpotifyToken(authCode: string) {

@@ -6,7 +6,7 @@ import { AlbumByArtist, PostArtist } from '../models/AlbumByArtist';
 import { Album } from '../models/Album';
 import { CoverartarchiveService } from '../cover-art-archive.service';
 import { CoverArtArchive } from '../models/CoverArtArchive';
-import { mergeMap, map, switchMap, Subject, Subscription } from 'rxjs';
+import { mergeMap, map, switchMap, Subject, Subscription, skip, tap } from 'rxjs';
 import { pipe } from 'rxjs';
 import { observable } from 'rxjs';
 import { makeBindingParser } from '@angular/compiler';
@@ -27,7 +27,8 @@ export class ArtistSelectComponent implements OnInit {
 
   requestAlbumInputSubject$ = new Subject<string>();
   requestAlbumsByArtist$ = this.requestAlbumInputSubject$.pipe(
-    switchMap(artist => this._albumsByArtistService.getAlbums(artist))
+    switchMap(artist => this._albumsByArtistService.getAlbums(artist)),
+    tap(_ => this.loading = false)
   )
 
   constructor(
@@ -41,14 +42,19 @@ export class ArtistSelectComponent implements OnInit {
   ngOnInit(): void {
     const user = this._authService.tryGetUser();
     if(user) {
-      this._authService.userName$.next(user);
+      this._authService.user$.next(user);
     } else {
       this._router.navigate(['/', 'login']);
     }
   }
 
   requestAlbumsByArtist() {
+    this.loading = true;
     this.requestAlbumInputSubject$.next(this.artistInput.value)
+  }
+
+  routeToNeuralLink(imageUrl: string) {
+    this._router.navigate(['/', 'neural-style-upload'], { queryParams: { imageUrl } });
   }
 
 }

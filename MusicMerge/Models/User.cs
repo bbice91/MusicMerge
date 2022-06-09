@@ -12,9 +12,6 @@ namespace MusicMerge
 
         public string Token { get; set; }
 
+        public List<GeneratedImage> Images { get; set; }
     }
-
-
-
-   
 }

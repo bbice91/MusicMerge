@@ -3,12 +3,6 @@
 <div>
 	<h1 class=" albumUploadHeader">Provide your Albums!</h1>
 </div>
-<div>
-	<p>
-
-	</p>
-
-</div>
 
 <body class="neuralStyleUploadBody">
 	<div>
@@ -17,9 +11,8 @@
 	</div>
 	<div>
 		<label>StyleId:</label>
-		<select name="styleID" id="#" class="dropdown" [formControl]="styleInput">
-			<option selected="selected" value="c7984d3c-1560-11e7-afe2-06d95fe194ed">Abstract</option>
-			<option value="ed8e394f-1b90-11e7-afe2-06d95fe194ed">Colorful</option>
+		<select *ngIf="styles.length > 0" name="styleID" class="dropdown" [formControl]="styleInput">
+			<option *ngFor="let style of styles" [value]="style.id">{{style.title}}</option>
 		</select>
 	</div>
 
