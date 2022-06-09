@@ -9,7 +9,7 @@ import { NeuralStyleUploadComponent } from './app/neural-style-upload/neural-sty
 export class NeuralStyleUploadService {
 
   constructor(private httpClient: HttpClient) { }
-  baseUrl = "http://localhost:5265/api/NeuralStyle";
+  baseUrl = "https://musicmerge.azurewebsites.net/api/NeuralStyle";
   
   
   uploadAlbumWithStyle(photoUrl: string, styleID: number){

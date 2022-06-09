@@ -15,7 +15,7 @@ export class AlbumsService {
 
   constructor(private httpClient: HttpClient) { 
   }
-   baseUrl = "https://localhost:5265/api/Albums";
+   baseUrl = "https://musicmerge.azurewebsites.net/api/Albums";
 
     getAlbums(){
    

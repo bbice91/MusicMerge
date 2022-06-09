@@ -12,7 +12,7 @@ export class CoverartarchiveService {
   album: Album | undefined;
 
   constructor(private httpClient: HttpClient) { }
-  baseUrl = "http://localhost:5265/api/CoverArtArchive";
+  baseUrl = "https://musicmerge.azurewebsites.net/api/CoverArtArchive";
 
   
 

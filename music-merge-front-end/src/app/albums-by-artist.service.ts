@@ -12,7 +12,7 @@ import { CoverArtArchive } from './models/CoverArtArchive';
 export class AlbumsByArtistService {
 
   constructor(private httpClient: HttpClient) { }
-  baseUrl = "http://localhost:5265/api/MusicBrainz";
+  baseUrl = "https://musicmerge.azurewebsites.net/api/MusicBrainz";
   
   
   getAlbums(artist: string){
