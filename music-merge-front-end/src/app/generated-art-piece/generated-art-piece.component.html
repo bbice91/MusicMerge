@@ -2,28 +2,8 @@
 <div class = "generatedArtHead">
     <h1> Check Out These Pics That Could Become Your Own Album Art! </h1>
 </div>
-  <ul>
-    <li>
-      <div class ="img1">
-        <img width="300px" height="300px" src={{imageURL1}}/>
-        <img width="300px" height="300px" src={{imageURL2}}/>
-        <img width="300px" height="300px" src={{imageURL3}}/>
-        <img width="300px" height="300px" src={{imageURL7}}/>
-        <img width="300px" height="300px" src={{imageURL9}}/>
-      </div>
-      <div class ="img2">
-        <img width="300px" height="300px" src={{imageURL4}}/>
-        <img width="300px" height="300px" src={{imageURL5}}/>
-        <img width="300px" height="300px" src={{imageURL6}}/>
-        <img width="300px" height="300px" src={{imageURL8}}/>
-        <img width="300px" height="300px" src={{imageURL10}}/>
-      </div>
-      <div class ="img3">
-        <img width="300px" height="300px" src={{imageURL11}}/>
-        <img width="300px" height="300px" src={{imageURL12}}/>
-        <img width="300px" height="300px" src={{imageURL13}}/>
-        <img width="300px" height="300px" src={{imageURL14}}/>
-        <img width="300px" height="300px" src={{imageURL15}}/>
-      </div>
-    </li>
-  </ul>   
+<ul class="image-list">
+  <li *ngFor="let image of images">
+      <img width="300px" height="300px" src={{image}}/>
+  </li>
+</ul>   

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
+import { DeepArtStyle } from './models/DeepArtStyle';
 import { GeneratedArtInProcess } from './models/GeneratedArtInProcess';
 import { GeneratedArtProgress } from './models/GeneratedArtProgress';
 
@@ -9,7 +10,7 @@ import { GeneratedArtProgress } from './models/GeneratedArtProgress';
 })
 export class GeneratedImagesService {
 
- 
+
   constructor(private httpClient: HttpClient) { }
   baseUrl = "http://localhost:5265/api/NeuralStyle";
 
@@ -19,10 +20,16 @@ export class GeneratedImagesService {
     return resp;
   }
 
-  getGeneratedImage(submission_id: string) :Observable<GeneratedArtProgress>{
-    return this.httpClient.get<GeneratedArtProgress>(`${this.baseUrl}/getGeneratedArt/${submission_id}`);
+  getGeneratedImage(submission_id: string, user_id: number) :Observable<GeneratedArtProgress>{
+    return this.httpClient.get<GeneratedArtProgress>(`${this.baseUrl}/getGeneratedArt/${submission_id}/${user_id}`);
   }
 
-  
+  getStyles() : Observable<Array<DeepArtStyle>>{ 
+    return this.httpClient.get<Array<DeepArtStyle>>(this.baseUrl);
+  }
+
+  getImagesById(id: number): Observable<Array<string>> {
+    return this.httpClient.get<Array<string>>(`${this.baseUrl}/getImagesById/${id}`);
+  }
 
 }

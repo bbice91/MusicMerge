@@ -15,6 +15,7 @@ using Newtonsoft.Json;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 using System.Net.Http.Headers;
 using System.Text;
+using MusicMerge.Services;
 
 namespace MusicMerge
 {
@@ -43,78 +44,51 @@ namespace MusicMerge
     public class NeuralStyleController : ControllerBase
     {
         private readonly MusicMergeContext _context;
+        private readonly DeepArtEffectService _deepArtEffectService;
 
-        public NeuralStyleController(MusicMergeContext context)
+        public NeuralStyleController(MusicMergeContext context, DeepArtEffectService deepArtEffectService)
         {
             _context = context;
-        }
-
-        class DeepArtRequest
-        {
-            public string? styleId { get; set; }
-            public string? imageBase64Encoded { get; set; }
-        }
-
-        class DeepArtResponse
-        {
-            public string? submissionId { get; set; }
-        }
-
-        class DeepArtImageResultResponse
-        {
-            public string? status { get; set; }
-            public string? url { get; set; }
+            _deepArtEffectService = deepArtEffectService;
         }
 
         [HttpGet("generateArt")]
-        public GeneratedArtInProcess GenerateAlbumArtAsync(string photo_url, string style_id)
+        public async Task<IActionResult> GenerateAlbumArtAsync([FromQuery] string photo_url, [FromQuery] string style_id)
         {
-            var client = new HttpClient();
-            var imageResponse = client.GetAsync(photo_url).Result;
-            var imageBinary = imageResponse.Content.ReadAsByteArrayAsync().Result;
-            var imageBase64 = Convert.ToBase64String(imageBinary);
-
-            var request = new DeepArtRequest { styleId = style_id, imageBase64Encoded = imageBase64 };
-            var requestJson = JsonSerializer.Serialize(request);
-            var requestContent = new StringContent(requestJson, Encoding.UTF8, "application/json");
-            requestContent.Headers.Add("x-api-key", "FcU8v502Pq5YdTrzylfaA1wUiNBaI9B847rXIr3W");
-
-            var httpResponse = client.PostAsync("https://api.deeparteffects.com/v1/noauth/upload", requestContent).Result;
-            var responseContent = httpResponse.Content.ReadAsStringAsync().Result;
-            var response = JsonSerializer.Deserialize<DeepArtResponse>(responseContent);
-
-            var albumArtRequest = new GeneratedArtInProcess
-()
-            {
-                SubmissionId = response.submissionId
-            };
-
-            return albumArtRequest;
-
+            var newImage = await _deepArtEffectService.GetGeneratedImageProgess(photo_url, style_id);
+            return Ok(newImage);
         }
 
 
-        [HttpGet("getGeneratedArt/{submission_id}")]
-        public GeneratedArtProgress GetGeneratedArt(string submission_id)
+        [HttpGet("getGeneratedArt/{submission_id}/{userId}")]
+        public async Task<IActionResult> GetGeneratedArt(string submission_id, int userId)
         {
-            var client = new HttpClient();
-            client.DefaultRequestHeaders.Add("x-api-key", "FcU8v502Pq5YdTrzylfaA1wUiNBaI9B847rXIr3W");
-            var httpResponse = client.GetAsync( "https://api.deeparteffects.com/v1/noauth/result?submissionId=" + submission_id).Result;
-            var responseContent = httpResponse.Content.ReadAsStringAsync().Result;
-            var response = JsonSerializer.Deserialize<DeepArtImageResultResponse>(responseContent);
+            var image = await _deepArtEffectService.GetGeneratedImage(submission_id);
 
-            var albumArtInProcess = new GeneratedArtProgress()
+            var generatedImage = new GeneratedImage
             {
-                status = response.status,
-                url = response.url
+                GeneratedImagePath = image.url,
+                UserId = userId
             };
 
-            return albumArtInProcess;
+            _context.generatedImages.Add(generatedImage);
+            await _context.SaveChangesAsync();
+
+            return Ok(image);
         }
 
-        private bool AlbumArtExists(int id)
+        [HttpGet]
+        [Route("getImagesById/{id}")]
+        public async Task<IActionResult> GetAllImagesById([FromRoute] int id)
         {
-            return (_context.Albums?.Any(e => e.Id == id)).GetValueOrDefault();
+            var user = await _context.Users.FindAsync(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+            var images = _context.generatedImages.Where(i => i.UserId == user.Id).Select(i => i.GeneratedImagePath).ToList();
+            return Ok(images);
         }
     }
 }

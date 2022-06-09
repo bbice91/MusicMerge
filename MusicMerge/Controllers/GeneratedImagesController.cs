@@ -24,22 +24,22 @@ namespace MusicMerge
         [HttpGet]
         public async Task<ActionResult<IEnumerable<GeneratedImage>>> GetGeneratedImage()
         {
-          if (_context.GeneratedImages == null)
+          if (_context.generatedImages == null)
           {
               return NotFound();
           }
-            return await _context.GeneratedImages.ToListAsync();
+            return await _context.generatedImages.ToListAsync();
         }
 
         // GET: api/GeneratedImages/5
         [HttpGet("{id}")]
         public async Task<ActionResult<GeneratedImage>> GetGeneratedImage(int id)
         {
-          if (_context.GeneratedImages == null)
+          if (_context.generatedImages == null)
           {
               return NotFound();
           }
-            var generatedImage = await _context.GeneratedImages.FindAsync(id);
+            var generatedImage = await _context.generatedImages.FindAsync(id);
 
             if (generatedImage == null)
             {
@@ -85,11 +85,11 @@ namespace MusicMerge
         [HttpPost]
         public async Task<ActionResult<GeneratedImage>> PostGeneratedImage(GeneratedImage generatedImage)
         {
-          if (_context.GeneratedImages == null)
+          if (_context.generatedImages == null)
           {
               return Problem("Entity set 'MusicMergeContext.GeneratedImage'  is null.");
           }
-            _context.GeneratedImages.Add(generatedImage);
+            _context.generatedImages.Add(generatedImage);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetGeneratedImage", new { id = generatedImage.Id }, generatedImage);
@@ -99,17 +99,17 @@ namespace MusicMerge
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteGeneratedImage(int id)
         {
-            if (_context.GeneratedImages == null)
+            if (_context.generatedImages == null)
             {
                 return NotFound();
             }
-            var generatedImage = await _context.GeneratedImages.FindAsync(id);
+            var generatedImage = await _context.generatedImages.FindAsync(id);
             if (generatedImage == null)
             {
                 return NotFound();
             }
 
-            _context.GeneratedImages.Remove(generatedImage);
+            _context.generatedImages.Remove(generatedImage);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -117,7 +117,7 @@ namespace MusicMerge
 
         private bool GeneratedImageExists(int id)
         {
-            return (_context.GeneratedImages?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.generatedImages?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

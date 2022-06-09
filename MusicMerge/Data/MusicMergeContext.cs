@@ -20,7 +20,7 @@ namespace MusicMerge.Data
         }
         public DbSet<Album> Albums { get; set; }
 
-        public DbSet<GeneratedImage> GeneratedImages { get; set; }
+        public DbSet<GeneratedImage> generatedImages { get; set; }
 
         public DbSet<User> Users { get; set; }
 

@@ -29,10 +29,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var oauthConfig = builder.Configuration.GetSection("SpotifyOAuth");
-builder.Services.Configure<SpotifyOAuthSettings>(oauthConfig);
+builder.Services.Configure<SpotifyOAuthSettings>(builder.Configuration.GetSection("SpotifyOAuth"));
+builder.Services.Configure<DeepArtEffectSettings>(builder.Configuration.GetSection("DeepArtEffectSettings"));
+
 builder.Services.AddHttpClient<SpotifyService>();
 builder.Services.AddHttpClient<CoverArtService>();
+builder.Services.AddHttpClient<DeepArtEffectService>();
 //builder.Services.AddScoped<IActionResult, MemoryRepository>();
 
 var app = builder.Build();

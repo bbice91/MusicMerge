@@ -1,4 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { AfterViewInit, Component, OnInit } from "@angular/core";
+import { ActivatedRoute, Router, Routes } from "@angular/router";
+import { AuthLoginService } from "../auth-login.service";
 
 
 @Component({
@@ -6,9 +8,23 @@ import { Component, OnInit } from "@angular/core";
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.css']
 })
-export class NavBarComponent implements OnInit {
+export class NavBarComponent implements AfterViewInit {
 
-  constructor() { }
+
+  constructor(private _authService: AuthLoginService, private _router: Router) { }
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      if (!this._router.url.includes("code")) {
+        const user = this._authService.tryGetUser();
+        if (user) {
+          this._authService.user$.next(user);
+        } else {
+          this._router.navigate(['/', 'login']);
+        }
+      }
+    }, 1000);
+  }
+
   public routes = [
     {
       route: "home",
@@ -27,8 +43,5 @@ export class NavBarComponent implements OnInit {
       text: "User Generated Albums"
     }
   ]
-
-  ngOnInit(): void {
-  }
 
 }

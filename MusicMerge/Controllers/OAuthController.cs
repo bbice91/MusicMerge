@@ -43,9 +43,9 @@ namespace MusicMerge.Controllers
                 return Unauthorized();
             }
 
-            await _userContext.UpsertSpotifyUser(spotifyUser, token.AccessToken);
+            var user = await _userContext.UpsertSpotifyUser(spotifyUser, token.AccessToken);
 
-            return Ok(spotifyUser);
+            return Ok(user);
         }
 
         [HttpPost]

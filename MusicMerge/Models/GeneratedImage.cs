@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MusicMerge
 {
@@ -6,8 +7,9 @@ namespace MusicMerge
     {
         [Key]
         public int Id { get; set; }
+
         public string GeneratedImagePath { get; set; }
 
+        public int UserId { get; set; }
     }
-
 }
