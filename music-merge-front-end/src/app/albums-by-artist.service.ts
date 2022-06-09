@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Album, PostAlbums } from './models/Album';
 import { AlbumByArtist } from './models/AlbumByArtist';
 import { ArtistSelectComponent } from './artist-select/artist-select.component';
+import { CoverArtArchive } from './models/CoverArtArchive';
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +16,8 @@ export class AlbumsByArtistService {
   
   
   getAlbums(artist: string){
-   
-    return this.httpClient.get<Array<AlbumByArtist>>(`${this.baseUrl}/${artist}`);
-    }
+    return this.httpClient.get<Array<CoverArtArchive>>(`${this.baseUrl}/${artist}`);
+  }
 
 }
 

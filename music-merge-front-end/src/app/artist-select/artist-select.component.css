@@ -40,3 +40,22 @@
       background-color: antiquewhite;
 
   }
+
+.image-list {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.image-list-item {
+    width: 10rem;
+    height: 10rem;
+    display: flex;
+    flex-direciton: column;
+    padding: 1rem;
+}
+
+.image-list-item img {
+    width: 8rem;
+    height: 8rem;
+}

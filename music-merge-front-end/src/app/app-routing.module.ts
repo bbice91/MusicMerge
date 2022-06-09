@@ -18,10 +18,6 @@ const routes: Routes = [
         component: LoginComponent
     },
     {
-        path: "album-list-view",
-        component: AlbumListViewComponent
-    },
-    {
         path: "neural-style-upload",
         component: NeuralStyleUploadComponent
 

@@ -16,7 +16,7 @@ export class AlbumListViewComponent {
 
   loading: boolean = false;
   mbid = new FormControl("");
-  albumArt: CoverArtArchive = { image: "", largeImage: "" };
+  albumArt: CoverArtArchive = { image: "", largeImage: "", id: "", name: "" };
 
   constructor(private coverArtArchiveService: CoverartarchiveService) { }
 
