@@ -34,7 +34,7 @@ export class AuthLoginService {
     const queryParameters = [
       'client_id=be3700051b734c8c8cff0857f4e0f60d',
       'client_secret=7cd175eca3b4ef88b93601f7e08c75e',
-      'redirect_uri=https://delightful-stone-035cfda10.1.azurestaticapps.net/login',
+      'redirect_uri=https://happy-sea-098f55310.1.azurestaticapps.net/login',
       'response_type=code'
     ];
 
@@ -45,7 +45,7 @@ export class AuthLoginService {
   redirectSpotifyToken() {
     const queryParameters = [
       'client_id=be3700051b734c8c8cff0857f4e0f60d',
-      'redirect_uri=https://delightful-stone-035cfda10.1.azurestaticapps.net/login',
+      'redirect_uri=https://happy-sea-098f55310.1.azurestaticapps.net/login',
       'response_type=code'
     ];
 
