@@ -18,24 +18,34 @@ namespace MusicMerge
     }
 
 
+    public class AlbumArt
+    {
+        public string? Image { get; set; }
+        public string? LargeImage { get; set; }
+        public string Id { get; set; }
+        public string Name { get; set; }
+    }
+
     [Route("api/[controller]")]
     [ApiController]
     public class MusicBrainzController : ControllerBase
     {
         private readonly MusicMergeContext _context;
+        private readonly CoverArtService _coverArtService;
 
-        public MusicBrainzController(MusicMergeContext context)
+        public MusicBrainzController(MusicMergeContext context, CoverArtService coverArtService)
         {
             _context = context;
+            _coverArtService = coverArtService;
         }
 
 
         [HttpGet("{artist}")]
-        public IEnumerable<Release> GetAlbumsByArtist(string artist) // IEnumerable<Album>
+        public async Task<IActionResult> GetAlbumsByArtist(string artist) // IEnumerable<Album>
         {
             if (artist is null)
             {
-                return new List<Release>();
+                return NotFound();
             }
 
             var q = new Query();
@@ -43,7 +53,7 @@ namespace MusicMerge
 
             if (artistList.TotalResults == 0)
             {
-                return new List<Release>();
+                return NotFound();
             }
 
             var artistEntry = artistList.Results.First().Item;
@@ -55,7 +65,20 @@ namespace MusicMerge
 
             var releases = artist1.Releases.Select(release => new Release() { Id = release.Id, Name = release.Title });
 
-            return releases;
+            if (releases == null)
+            {
+                return NotFound();
+            }
+
+            var reqests = releases.Select(release => _coverArtService.GetAlbumArtByArtId(release.Id.ToString(), release.Name));
+            var albums = await Task.WhenAll(reqests);
+
+            if (albums == null || !albums.Any())
+            {
+                return NotFound();
+            }
+
+            return Ok(albums.Where(x => x != null));
         }
 
         private bool AlbumExists(int id)

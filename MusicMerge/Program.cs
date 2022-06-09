@@ -32,6 +32,7 @@ builder.Services.AddSwaggerGen();
 var oauthConfig = builder.Configuration.GetSection("SpotifyOAuth");
 builder.Services.Configure<SpotifyOAuthSettings>(oauthConfig);
 builder.Services.AddHttpClient<SpotifyService>();
+builder.Services.AddHttpClient<CoverArtService>();
 //builder.Services.AddScoped<IActionResult, MemoryRepository>();
 
 var app = builder.Build();

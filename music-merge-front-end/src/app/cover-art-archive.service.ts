@@ -12,13 +12,12 @@ export class CoverartarchiveService {
   album: Album | undefined;
 
   constructor(private httpClient: HttpClient) { }
-  baseUrl = "http://localhost:5265/release";
+  baseUrl = "http://localhost:5265/api/CoverArtArchive";
 
   
 
   getAlbumCoverArt(mbid: string){
-    console.log(mbid);
-    return this.httpClient.get<CoverArtArchive>(`${this.baseUrl}/${mbid}`);
+    return this.httpClient.get<CoverArtArchive>(`${this.baseUrl}/release/${mbid}`);
   }
 
 

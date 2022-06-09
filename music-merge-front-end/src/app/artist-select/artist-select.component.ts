@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Form, FormControl, FormGroup } from '@angular/forms';
 import { AlbumsByArtistService } from '../albums-by-artist.service';
 import { Router } from '@angular/router';
@@ -6,7 +6,7 @@ import { AlbumByArtist, PostArtist } from '../models/AlbumByArtist';
 import { Album } from '../models/Album';
 import { CoverartarchiveService } from '../cover-art-archive.service';
 import { CoverArtArchive } from '../models/CoverArtArchive';
-import { mergeMap, map, switchMap } from 'rxjs';
+import { mergeMap, map, switchMap, Subject, Subscription } from 'rxjs';
 import { pipe } from 'rxjs';
 import { observable } from 'rxjs';
 import { makeBindingParser } from '@angular/compiler';
@@ -25,11 +25,17 @@ export class ArtistSelectComponent implements OnInit {
 
   artistInput = new FormControl("");
 
+  requestAlbumInputSubject$ = new Subject<string>();
+  requestAlbumsByArtist$ = this.requestAlbumInputSubject$.pipe(
+    switchMap(artist => this._albumsByArtistService.getAlbums(artist))
+  )
+
   constructor(
     private _albumsByArtistService: AlbumsByArtistService, 
     private _authService: AuthLoginService,
     private _router: Router
   ) { }
+
 
 
   ngOnInit(): void {
@@ -42,15 +48,7 @@ export class ArtistSelectComponent implements OnInit {
   }
 
   requestAlbumsByArtist() {
-    this.loading = true;
-    const artist = this.artistInput.value;
-    console.log(artist);
-    this._albumsByArtistService.getAlbums(artist).subscribe(
-      response => {
-        console.log(response);
-        this.albums = response;
-        this.loading = false;
-      });
+    this.requestAlbumInputSubject$.next(this.artistInput.value)
   }
 
 }

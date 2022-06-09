@@ -13,50 +13,20 @@ using System.Net.Http.Headers;
 
 namespace MusicMerge
 {
-    public class AlbumArt
-    {
-        public string? Image { get; set; }
-        public string? LargeImage { get; set; }
-    }
 
     [Route("api/[controller]")]
     [ApiController]
     public class CoverArtArchiveController : ControllerBase
     {
         private readonly MusicMergeContext _context;
+        private readonly CoverArtService _coverArtService;
 
-        public CoverArtArchiveController(MusicMergeContext context)
+        public CoverArtArchiveController(MusicMergeContext context, CoverArtService coverArtService)
         {
             _context = context;
+            _coverArtService = coverArtService;
         }
 
-
-        [HttpGet("/release/{mbid}")]
-        public AlbumArt GetAlbumArtByReleaseMbid(Guid mbid)
-        {
-            var url = $"https://coverartarchive.org/release/{mbid}";
-            var client = new HttpClient();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-            var httpResponse = client.GetAsync(url).Result;
-            var albumArtReceipt = httpResponse.Content.ReadAsStringAsync().Result;
-
-            if (httpResponse.IsSuccessStatusCode)
-            {
-            var response = JsonSerializer.Deserialize<AlbumArtResponse>(albumArtReceipt);
-            var image1 = response.images.First();
-
-            var artistAlbumArt = new AlbumArt()
-            {
-                Image = image1.image,
-                LargeImage = image1.thumbnails.large
-            };
-            return artistAlbumArt;  
-
-            }
-
-            return null;
-        }
 
 
         private bool AlbumArtExists(int id)
