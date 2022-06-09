@@ -10,13 +10,17 @@ namespace MusicMerge.Models
 
         public string Scope { get; set; }
 
-        [JsonPropertyName("resonse_type")]
-        public string ResponseType { get; set; }
 
         [JsonPropertyName("grant_type")]
         public string GrantType { get; set; }
 
         [JsonPropertyName("token_type")]
         public string TokenType { get; set; }
+
+        [JsonPropertyName("expires_in")]
+        public int ExpiresIn { get; set; }
+
+        [JsonPropertyName("refresh_token")]
+        public string RefreshToken { get; set; }
     }
 }

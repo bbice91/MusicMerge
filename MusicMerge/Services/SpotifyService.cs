@@ -16,7 +16,7 @@ namespace MusicMerge.Services
         private readonly SpotifyOAuthSettings _config;
         private readonly HttpClient _httpClient;
 
-        public SpotifyService(HttpClient httpClient, SpotifyOAuthSettings config)
+        public SpotifyService(HttpClient httpClient, IOptions<SpotifyOAuthSettings> config)
         {
             _config = config.Value;
             _httpClient = httpClient;
@@ -26,21 +26,22 @@ namespace MusicMerge.Services
         {
             var httpParams = new FormUrlEncodedContent(new Dictionary<string, string>
             {
-                { "code", code },
-                {"client_id", _config.ClientId },
-                {"response_type", _config.ResponseType },
-                {"redirect_uri", _config.RedirectUri },
-                {"state", _config.State},
-                {"scope", _config.Scope },
-                {"show_dialog", _config.ShowDialog }
+                {"grant_type", "authorization_code"},
+                {"code", code},
+                {"redirect_uri", _config.RedirectUri }
             });
 
             var request = new HttpRequestMessage()
             {
-                RequestUri = new Uri("https://accounts.spotify.com/authorize"),
-                Method = HttpMethod.Get,
-                Content = httpParams
+                RequestUri = new Uri("https://accounts.spotify.com/api/token"),
+                Method = HttpMethod.Post,
+                Content = httpParams,
             };
+
+            var encodedToken = $"{_config.ClientId}:{_config.ClientSecret}";
+
+            var encodedClientSecret = Convert.ToBase64String(Encoding.UTF8.GetBytes(encodedToken));
+            request.Headers.Authorization = new AuthenticationHeaderValue("Basic", encodedClientSecret);
 
             request.Headers.Add("Accept", "application/json");
 
@@ -56,23 +57,17 @@ namespace MusicMerge.Services
             return token;
         }
 
-        public async Task<User> GetSpotifyUser(string token)
+        public async Task<SpotifyUser> GetSpotifyUser(string token)
         {
-            var httpParams = new FormUrlEncodedContent(new Dictionary<string, string>
-            {
-                {"grant_type", "authorization_code" },
-                {"code", token },
-                {"redirect_uri", _config.RedirectUri }
 
-            });
             var request = new HttpRequestMessage()
             {
-                RequestUri = new Uri("https://accounts.spotify.com/api/token"),
-                Method = HttpMethod.Post,
+                RequestUri = new Uri("https://api.spotify.com/v1/me"),
+                Method = HttpMethod.Get,
             };
-
-            request.Headers.Add("Authorization","Content-Type");
-           // request.Headers.Add()
+            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            request.Headers.Add("Accept", "application/json");
+            
 
             var response = await _httpClient.SendAsync(request);
 
@@ -88,7 +83,7 @@ namespace MusicMerge.Services
                 PropertyNameCaseInsensitive = true
             };
 
-            var user = JsonSerializer.Deserialize<User>(content, options);
+            var user = JsonSerializer.Deserialize<SpotifyUser>(content, options);
 
             return user;
         }

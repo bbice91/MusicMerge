@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { map } from 'rxjs';
+import { map, tap } from 'rxjs';
 import { filter } from 'rxjs';
 import { switchMap } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -30,8 +30,8 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void { 
 
     this._activatedRoute.queryParams.pipe(
-      map(params => ({code: params["code"], state: params["state"]})),
-      filter(p => p.code && p.state && p.state === localStorage.getItem("authState")),
+      map(params => ({code: params["code"]})),
+      filter(p => p.code),
       switchMap((p: {code: string}) => this._authLoginService.spotifylogin(p.code))
     ) 
     .subscribe(userName => {
