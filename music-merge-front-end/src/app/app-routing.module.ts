@@ -8,6 +8,7 @@ import { AlbumListViewComponent } from "./album-list-view/album-list-view.compon
 import { ArtistSelectComponent } from "./artist-select/artist-select.component";
 
 const routes: Routes = [
+
     {
         path: "home",
         component: HomeComponent
@@ -32,6 +33,10 @@ const routes: Routes = [
     {
         path: "generated-art-piece",
         component: GeneratedArtPieceComponent
+    },
+    {
+        path: "*/",
+        component: HomeComponent
     },
 
 

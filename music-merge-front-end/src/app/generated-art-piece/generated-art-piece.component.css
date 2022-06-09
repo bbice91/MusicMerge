@@ -1,31 +1,45 @@
 .generatedArtHead{
     display: flex;
-	flex-direction: column;
+	flex-direction: row;
     justify-content: center;
     text-align: center;
-    background-color: rgb(122, 219, 223);
-    color: rgb(163, 88, 138)
+    background-color: rgb(108, 96, 116);
+    color: rgb(227, 191, 236)
 
 }
 
 
- .variousImages{
+  .variousImages{
 
     display: flex;
-	flex-direction: column;
-    justify-content: center;
-    text-align: center;
+	flex-direction: row;
+    /* justify-content: center; */
+    /* text-align: center; */
 
-} 
+}  
 
-.img3{
+.img1{
+    display: flex;
+	flex-direction: row;
+    justify-content: left;
 
     object-fit: fill;
     object-position: left;
     
 }
-.img4{
+.img2{
+    display: flex;
+	flex-direction: row;
+    justify-content: left;
 
     object-fit: fill;
-    object-position: right;
+    object-position: left;
+}
+.img3{
+    display: flex;
+	flex-direction: row;
+    justify-content: left;
+
+    object-fit: fill;
+    object-position: left;
 }

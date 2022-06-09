@@ -52,24 +52,15 @@ namespace MusicMerge.Controllers
 
         [HttpPost]
         [Route("/api/token")]
-<<<<<<< Updated upstream
 
-<<<<<<< Updated upstream
-        //public async Task<IActionResult> GetAccess([FromRoute] string accessToken, string grantType)
-        //{
-
-        //}
-=======
-
-=======
+       
 
 
->>>>>>> Stashed changes
+
         public async Task<IActionResult> GetAccess([FromRoute] string accessToken)
         {
             return Ok(accessToken);
         }
 
->>>>>>> Stashed changes
     }
 }

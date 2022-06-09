@@ -9,15 +9,14 @@
     font-size: 15px;
     text-align: center;
     outline: none;
-    color: rgb(226, 182, 233);
-    background-color: #d1bdcf;
+    background-color: rgb(238, 220, 243);
     border: none;
     border-radius: 15px;
     box-shadow: 0 9px #999;
   }
 
   
-  .button:hover {background-color: #90dbbc}
+  /* .button:hover {background-color: #90dbbc} */
   
   /* .button:active {
     background-color: #3e8e41;

@@ -17,7 +17,8 @@ export class CoverartarchiveService {
   
 
   getAlbumCoverArt(mbid: string){
-    return this.httpClient.get<Array<CoverArtArchive>>(`${this.baseUrl}/${mbid}`);
+    console.log(mbid);
+    return this.httpClient.get<CoverArtArchive>(`${this.baseUrl}/${mbid}`);
   }
 
 

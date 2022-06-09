@@ -14,17 +14,17 @@ export class NavBarComponent implements OnInit {
       route: "home",
       text: "Home"
     },
-    {
-      route: "login",
-      text: "Log In"
-    },
+    // {
+    //   route: "login",
+    //   text: "Log In"
+    // },
     {
       route: "artist-select",
       text: "Select Artist"
     },
     {
       route: "album-list-view",
-      text: "Albums By Artist"
+      text: "Get Album Art"
     },
     {
       route: "neural-style-upload",

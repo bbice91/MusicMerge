@@ -22,18 +22,15 @@
 </div>
 
 <body class="albumByArtistLookupBody">
-	<form [formGroup]="albumsByArtistFormGroup" (submit)="requestAlbumsByArtist()">
 		<div>
 			<label>Artist:</label>
-			<input type="text" formControlName="artistInput">
+			<input type="text" [formControl]="artistInput">
+
 		</div>
 
 		<div>
 			<button type="button" (click)="requestAlbumsByArtist()">Search Albums by Artist</button>
-			<!-- NEED TO ROUTE TO ARTIST/ALBUM LIST ONCE BUTTON IS SELECTED -->
-			<!-- OR ADD THE LIST BELOW THE INPUT -->
 		</div>
-	</form>
 
 
 	<div>
@@ -45,9 +42,13 @@
 
 		<ul *ngIf="!loading; else waitingForAlbums">
 			<li *ngFor="let album of albums">
-				Id: {{album.id}} Name: {{album.name}}
+
+				Id: {{album.id}} From This Artist: {{album.name}}
+				 
+
 			</li>
 		</ul>
+
 	</div>
 	<div class="waiting">
 

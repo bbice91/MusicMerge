@@ -1,4 +1,14 @@
+.albumByArtistLookupBody{
+    
 
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        background-color: rgb(108, 96, 116);
+        color: rgb(227, 191, 236)
+
+}
 
 .list{
 
@@ -16,3 +26,9 @@
     text-align: center;
 
 }
+
+  button{
+    background-color: rgb(191, 172, 196);
+    color: rgb(53, 37, 58);
+
+  }

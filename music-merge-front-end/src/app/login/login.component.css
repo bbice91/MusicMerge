@@ -1,3 +1,17 @@
+.logHeader{
+
+    display: flex;
+	flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    background-color: rgb(108, 96, 116);
+    color: rgb(219, 177, 231)
+
+
+}
+
+
+
 .spotifyLogin{
     display: flex;
     flex-basis: 25%;
@@ -6,7 +20,7 @@
     text-align: center;
 
 }
-#button{
+/* #button{
     padding: 15px 25px;
     font-size: 15px;
     text-align: center;
@@ -16,4 +30,34 @@
     border: none;
     border-radius: 15px;
     box-shadow: 0 9px #999;
+} */
+.button {
+    display: flex;
+	flex-direction: row;
+    justify-content: center;
+    text-align: center;
+    padding: 15px 25px;
+    font-size: 15px;
+    /* outline: none;
+    color:  rgb(122, 219, 223);
+    background-color: rgb(59, 63, 66);
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999; */
+  }
+  button{
+    background-color: rgb(191, 172, 196);
+    color: rgb(53, 37, 58);
+
+  }
+
+.image{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    
+        object-fit: fill;
+        object-position: center;
+        
+    
 }

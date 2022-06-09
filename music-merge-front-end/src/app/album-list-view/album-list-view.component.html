@@ -1,26 +1,29 @@
+<body class="albumByArtistLookupBody">
+	<div>
+		<h1>Enter The Album ID from Your Selected Artist Here!</h1>
+	</div>
+	<div>
+		<label>Album ID:</label>
+		<input type="text" [formControl]="mbid">
+	</div>
 
+	<div>
+		<button type="button" (click)="getAlbumArt()">Get Album Art</button>
+	</div>
 
-<div class="list">
+	<div class="list">
 
-    <ul *ngIf="albums.length > 0; else waitingForAlbums">
-    
-        <li *ngFor="let album of albums">
-            <div>
-                <p>Album Name: {{album.name}}</p>
-               
-            </div>
+		<ul *ngIf="!loading; else waitingForAlbums">
+			{{albumArt.image}}
+			<img src='{{albumArt.image}}' />
+		</ul>
 
-        </li>
+	</div>
+	<div class="waiting">
+		<ng-template #waitingForAlbums>
+			<p>Fetching album art...</p>
+		</ng-template>
 
-    </ul>
+	</div>
 
-    <div class="waiting">
-
-            <ng-template #waitingForAlbums>
-                <p>collecting your Albums...</p>
-            </ng-template>
-    
-    </div>
-    
-</div>
-
+</body>
