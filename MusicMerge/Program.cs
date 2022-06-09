@@ -6,8 +6,7 @@ using MusicMerge;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.DependencyInjection;
-
-
+using MusicMerge.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<MusicMergeContext>(options =>
@@ -29,7 +28,11 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-//builder.Services.Configure<SpotifyOAuthSettings>(Configuration.GetSection("SpotifyOAuth"));
+var oauthConfig = builder.Configuration.GetSection("SpotifyOAuth");
+var oauth = new SpotifyOAuthSettings();
+oauth.ClientId = oauthConfig.GetValue<string>("ClientId");
+oauth.RedirectUri = oauthConfig.GetValue<string>("RedirectUri");
+builder.Services.AddSingleton(x => new SpotifyService(new HttpClient(), oauth));
 
 var app = builder.Build();
 
@@ -40,7 +43,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
 
 app.UseHttpsRedirection();
 

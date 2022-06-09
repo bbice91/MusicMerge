@@ -16,7 +16,7 @@ namespace MusicMerge.Services
         private readonly SpotifyOAuthSettings _config;
         private readonly HttpClient _httpClient;
 
-        public SpotifyService(HttpClient httpClient, IOptions<SpotifyOAuthSettings> config)
+        public SpotifyService(HttpClient httpClient, SpotifyOAuthSettings config)
         {
             _config = config.Value;
             _httpClient = httpClient;
@@ -37,8 +37,8 @@ namespace MusicMerge.Services
 
             var request = new HttpRequestMessage()
             {
-                RequestUri = new Uri("https://accounts.spotify.com/api/token"),
-                Method = HttpMethod.Post,
+                RequestUri = new Uri("https://accounts.spotify.com/authorize"),
+                Method = HttpMethod.Get,
                 Content = httpParams
             };
 
@@ -58,13 +58,20 @@ namespace MusicMerge.Services
 
         public async Task<User> GetSpotifyUser(string token)
         {
+            var httpParams = new FormUrlEncodedContent(new Dictionary<string, string>
+            {
+                {"grant_type", "authorization_code" },
+                {"code", token },
+                {"redirect_uri", _config.RedirectUri }
+
+            });
             var request = new HttpRequestMessage()
             {
-                RequestUri = new Uri("https://accounts.spotify.com/authorize"),
+                RequestUri = new Uri("https://accounts.spotify.com/api/token"),
                 Method = HttpMethod.Post,
             };
 
-            request.Headers.Add("Authorization", $"token {token}");
+            request.Headers.Add("Authorization","Content-Type");
            // request.Headers.Add()
 
             var response = await _httpClient.SendAsync(request);
@@ -86,22 +93,22 @@ namespace MusicMerge.Services
             return user;
         }
 
-        public void GetClientCredentialsAuthToken()
-        {
-            var spotifyClient = "be3700051b734c8c8cff0857f4e0f60d";
-            var spotifySecret = "7cd175eca3b4ef88b93601f7e08c75e";
+        //public void GetClientCredentialsAuthToken()
+        //{
+        //    var spotifyClient = "be3700051b734c8c8cff0857f4e0f60d";
+        //    var spotifySecret = "7cd175eca3b4ef88b93601f7e08c75e";
 
-            var webClient = new WebClient();
+        //    var webClient = new WebClient();
 
-            var postparams = new NameValueCollection();
-            postparams.Add("grant_type", "client_credentials");
+        //    var postparams = new NameValueCollection();
+        //    postparams.Add("grant_type", "client_credentials");
 
-            var authHeader = Convert.ToBase64String(Encoding.Default.GetBytes($"{spotifyClient}:{spotifySecret}"));
-            webClient.Headers.Add(HttpRequestHeader.Authorization, "Basic " + authHeader);
+        //    var authHeader = Convert.ToBase64String(Encoding.Default.GetBytes($"{spotifyClient}:{spotifySecret}"));
+        //    webClient.Headers.Add(HttpRequestHeader.Authorization, "Basic " + authHeader);
 
-            var tokenResponse = webClient.UploadValues("https://accounts.spotify.com/api/token", postparams);
+        //    var tokenResponse = webClient.UploadValues("https://accounts.spotify.com/api/token", postparams);
 
-            var textResponse = Encoding.UTF8.GetString(tokenResponse);
-        }
+        //    var textResponse = Encoding.UTF8.GetString(tokenResponse);
+        //}
     }
 }

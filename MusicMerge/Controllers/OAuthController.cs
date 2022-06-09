@@ -30,7 +30,7 @@ namespace MusicMerge.Controllers
         }
 
         [HttpGet]
-        [Route("/authorize")]
+        [Route("/authorize/{code}/{authorize}")]
         public async Task<IActionResult> Login([FromRoute] string code, [FromRoute] Authorize authorize)
         {
             var token = authorize switch
@@ -47,17 +47,20 @@ namespace MusicMerge.Controllers
 
             await _userContext.UpsertSpotifyUser(spotifyUser, token.AccessToken);
 
-            return Ok();
+            return Ok(spotifyUser);
         }
 
-        //[HttpPost]
-        //[Route("/api/token")]
+        [HttpPost]
+        [Route("/api/token")]
+
+       
 
 
-        //public async Task<IActionResult> GetAccess([FromRoute] string accessToken, string grantType)
-        //{
 
-        //}
+        public async Task<IActionResult> GetAccess([FromRoute] string accessToken)
+        {
+            return Ok(accessToken);
+        }
 
     }
 }
