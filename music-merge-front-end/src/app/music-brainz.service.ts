@@ -9,7 +9,7 @@ export class MusicBrainzService {
 
   constructor(private httpClient: HttpClient) { }
 
-  baseUrl = "https://localhost:5265/api/MusicBrainz/{artist}";
+  baseUrl = "https://musicmerge.azurewebsites.net/api/MusicBrainz/{artist}";
 
   getAlbumsByArtist(){
     return this.httpClient.get<Array<AlbumByArtist>>(this.baseUrl);

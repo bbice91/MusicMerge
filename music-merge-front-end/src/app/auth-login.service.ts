@@ -12,7 +12,7 @@ import { observeNotification } from 'rxjs/internal/Notification';
 export class AuthLoginService {
 
   constructor(private _http: HttpClient) { }
-  baseUrl = "http://localhost:5265/api/oauth"
+  baseUrl = "https://musicmerge.azurewebsites.net/api/oauth"
 
   user$: ReplaySubject<User | null> = new ReplaySubject();
 
@@ -34,7 +34,7 @@ export class AuthLoginService {
     const queryParameters = [
       'client_id=be3700051b734c8c8cff0857f4e0f60d',
       'client_secret=7cd175eca3b4ef88b93601f7e08c75e',
-      'redirect_uri=http://localhost:4200/login',
+      'redirect_uri=https://musicmerge.azurewebsites.net/login',
       'response_type=code'
     ];
 
@@ -45,7 +45,7 @@ export class AuthLoginService {
   redirectSpotifyToken() {
     const queryParameters = [
       'client_id=be3700051b734c8c8cff0857f4e0f60d',
-      'redirect_uri=http://localhost:4200/login',
+      'redirect_uri=https://musicmerge.azurewebsites.net/login',
       'response_type=code'
     ];
 

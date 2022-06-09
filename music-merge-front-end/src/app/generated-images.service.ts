@@ -12,7 +12,7 @@ export class GeneratedImagesService {
 
 
   constructor(private httpClient: HttpClient) { }
-  baseUrl = "http://localhost:5265/api/NeuralStyle";
+  baseUrl = "https://musicmerge.azurewebsites.net/api/NeuralStyle";
 
   generateArt(photo_url: string, style_id: number) :Observable<GeneratedArtInProcess>{
     const resp = this.httpClient.get<GeneratedArtInProcess>(`${this.baseUrl}/generateArt?photo_url=${photo_url}&style_id=${style_id}`);
