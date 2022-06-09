@@ -12,7 +12,7 @@ import { observeNotification } from 'rxjs/internal/Notification';
 export class AuthLoginService {
 
  constructor( private _http: HttpClient) { }
-  baseUrl = "https://localhost:5265/api/login"
+  baseUrl = "http://localhost:5265/api/oauth"
 
   userName$: ReplaySubject<User | null> = new ReplaySubject();
 
@@ -25,7 +25,7 @@ export class AuthLoginService {
     const queryParameters = [
       'client_id=be3700051b734c8c8cff0857f4e0f60d',
       'client_secret=7cd175eca3b4ef88b93601f7e08c75e',
-      'redirect_uri=https://localhost:4200/', 
+      'redirect_uri=http://localhost:4200/login', 
       'response_type=code'
     ];
 
@@ -37,8 +37,7 @@ export class AuthLoginService {
 
     const queryParameters = [
       'client_id=be3700051b734c8c8cff0857f4e0f60d',
-      'client_secret=7cd175eca3b4ef88b93601f7e08c75e',
-      'redirect_uri=http://localhost:4200/', 
+      'redirect_uri=http://localhost:4200/login', 
       'response_type=code'
 
     ];
@@ -48,7 +47,7 @@ export class AuthLoginService {
   
 
   spotifylogin(code: string) {
-    return this._http.get<User>(`${this.baseUrl}/login/${code}/Spotify`)
+    return this._http.get<User>(`${this.baseUrl}/login/${code}`)
   }
 
   autoLogin(id: number) {

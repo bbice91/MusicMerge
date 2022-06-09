@@ -11,13 +11,7 @@ namespace MusicMerge
         public DateTime CreatedDate { get; set; }
 
         public string Token { get; set; }
-        public Authorize Authorize { get; set; }
 
-    }
-
-    public enum Authorize
-    {
-        Spotify
     }
 
 

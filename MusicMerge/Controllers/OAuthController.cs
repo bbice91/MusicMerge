@@ -12,31 +12,29 @@ using MusicMerge;
 using System.Text;
 using System.Net;
 using System.Collections.Specialized;
+using MusicMerge.Data;
 
 namespace MusicMerge.Controllers
 {
 
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class OAuthController : ControllerBase
     {
         private readonly SpotifyService _spotifyService;
-        private readonly UserContext _userContext;
+        private readonly MusicMergeContext _userContext;
 
-        public OAuthController(UserContext userContext, SpotifyService spotifyService)
+        public OAuthController(MusicMergeContext userContext, SpotifyService spotifyService)
         {
             _spotifyService = spotifyService;
             _userContext = userContext;
         }
 
         [HttpGet]
-        [Route("/authorize/{code}/{authorize}")]
-        public async Task<IActionResult> Login([FromRoute] string code, [FromRoute] Authorize authorize)
+        [Route("login/{code}")]
+        public async Task<IActionResult> Login([FromRoute] string code)
         {
-            var token = authorize switch
-            {
-                Authorize.Spotify => await _spotifyService.GetToken(code),
-            };
+            var token = await _spotifyService.GetToken(code);
 
             var spotifyUser = await _spotifyService.GetSpotifyUser(token.AccessToken);
 

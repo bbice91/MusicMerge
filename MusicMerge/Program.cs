@@ -28,11 +28,11 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 var oauthConfig = builder.Configuration.GetSection("SpotifyOAuth");
-var oauth = new SpotifyOAuthSettings();
-oauth.ClientId = oauthConfig.GetValue<string>("ClientId");
-oauth.RedirectUri = oauthConfig.GetValue<string>("RedirectUri");
-builder.Services.AddSingleton(x => new SpotifyService(new HttpClient(), oauth));
+builder.Services.Configure<SpotifyOAuthSettings>(oauthConfig);
+builder.Services.AddHttpClient<SpotifyService>();
+//builder.Services.AddScoped<IActionResult, MemoryRepository>();
 
 var app = builder.Build();
 
